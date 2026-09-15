@@ -1,0 +1,19 @@
+{
+  "name": "@marfin/video",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "studio": "bun ../cli/remotion-cli.js studio src/index.ts",
+    "render:test": "bun ../cli/remotion-cli.js render src/index.ts MarfinTest ../../outputs/marfin-test.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "workspace:*",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  }
+}
