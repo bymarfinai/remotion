@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import {spawn} from 'node:child_process';
-import {mkdir} from 'node:fs/promises';
+import {mkdir, writeFile} from 'node:fs/promises';
 import {dirname, isAbsolute, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
@@ -15,7 +15,7 @@ const REPO_ROOT = resolve(__dirname, '../../..');
 
 const server = new McpServer({
   name: 'marfin-remotion-mcp',
-  version: '0.0.2',
+  version: '0.0.3',
 });
 
 server.registerTool(
@@ -32,6 +32,97 @@ server.registerTool(
       },
     ],
   }),
+);
+
+server.registerTool(
+  'create_video',
+  {
+    title: 'Create Remotion video',
+    description:
+      'Creates a standalone Remotion composition inside the local Marfin video workspace from React/TSX source code.',
+    inputSchema: {
+      name: z
+        .string()
+        .regex(/^[A-Za-z0-9_-]+$/)
+        .describe('Safe video folder name, for example trezio-launch'),
+      compositionId: z
+        .string()
+        .regex(/^[A-Za-z0-9_-]+$/)
+        .describe('Remotion composition ID, for example TrezioLaunch'),
+      sourceCode: z
+        .string()
+        .min(1)
+        .describe(
+          'Complete TSX source for a named React component exported as Video.',
+        ),
+      durationInFrames: z.number().int().positive(),
+      fps: z.number().int().positive().default(30),
+      width: z.number().int().positive().default(1920),
+      height: z.number().int().positive().default(1080),
+    },
+  },
+  async ({
+    name,
+    compositionId,
+    sourceCode,
+    durationInFrames,
+    fps,
+    width,
+    height,
+  }) => {
+    const videoDirectory = resolve(
+      REPO_ROOT,
+      'packages',
+      'marfin-video',
+      'src',
+      'generated',
+      name,
+    );
+
+    await mkdir(videoDirectory, {recursive: true});
+
+    const videoPath = resolve(videoDirectory, 'Video.tsx');
+    const entryPath = resolve(videoDirectory, 'index.tsx');
+
+    const entrySource = `import {Composition, registerRoot} from 'remotion';
+import {Video} from './Video';
+
+const GeneratedVideo: React.FC = () => {
+  return (
+    <Composition
+      id="${compositionId}"
+      component={Video}
+      durationInFrames={${durationInFrames}}
+      fps={${fps}}
+      width={${width}}
+      height={${height}}
+    />
+  );
+};
+
+registerRoot(GeneratedVideo);
+`;
+
+    await writeFile(videoPath, sourceCode, 'utf8');
+    await writeFile(entryPath, entrySource, 'utf8');
+
+    const relativeEntry =
+      `packages/marfin-video/src/generated/${name}/index.tsx`;
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text:
+            `Video source created successfully.\n` +
+            `Name: ${name}\n` +
+            `Composition: ${compositionId}\n` +
+            `Entry point: ${relativeEntry}\n` +
+            `Video source: packages/marfin-video/src/generated/${name}/Video.tsx`,
+        },
+      ],
+    };
+  },
 );
 
 server.registerTool(
@@ -65,7 +156,7 @@ server.registerTool(
 
     return await new Promise((resolvePromise) => {
       const child = spawn(
-        'bun',
+        process.execPath,
         [
           resolve(REPO_ROOT, 'packages/cli/remotion-cli.js'),
           'render',
