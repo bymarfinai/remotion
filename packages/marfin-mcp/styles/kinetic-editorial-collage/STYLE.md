@@ -345,3 +345,60 @@ The ZIP should normally include:
 - README instructions.
 
 Do not assume connector-side binary upload is sufficient. The user should receive the ZIP whenever local asset installation is needed.
+
+
+## KEC Quality Gate v1
+
+A KEC composition is not considered ready for user review until it passes all of these checks.
+
+### Visual quality
+- Hero subject is clearly readable and visually dominant.
+- Background is textured/editorial, not flat or empty unless explicitly requested.
+- Contextual imagery supports the topic and is visibly rendered.
+- Typography is sharp, native to Remotion where practical, and does not collide unintentionally.
+- Paper/torn-strip treatments look deliberate and support hierarchy.
+- Color contrast is strong enough for mobile viewing.
+- Final frame reads as a strong editorial poster even when motion is paused.
+
+### Layer quality
+- Hero, contextual image, texture, labels, and decorative cutouts are independently controllable layers.
+- No full-poster raster fallback is used as the finished motion composition.
+- No broken, invisible, accidental, or placeholder-only layers remain.
+- Any generated binary asset needed locally is included in the user ZIP.
+
+### Motion quality
+- Layer entrances are staggered.
+- Motion uses short, energetic timing with controlled overshoot.
+- Small rotations and camera push are intentional rather than random.
+- The strongest composition gets a readable hold before the video ends.
+- Motion does not feel like a static poster merely sliding around.
+
+### Asset verification
+Before handoff, verify in Remotion Studio at representative early, middle, and late frames:
+- hero visible,
+- contextual imagery visible,
+- texture visible,
+- decorative assets visible,
+- labels readable,
+- no unintended transparent dead zones,
+- no missing-file icons or failed image loads.
+
+### Delivery quality
+When generated binary assets are required:
+- provide a ZIP,
+- include every required binary asset,
+- include `install.ps1`,
+- ensure the installer places files in the exact project path expected by `staticFile()`,
+- verify file names and sizes after installation.
+
+### Acceptance baseline
+The Monas KEC V3 exploration defines the current minimum production bar for KEC:
+- layered generated/photo cutouts,
+- tactile charcoal print background,
+- cobalt/orange graphic masses,
+- warm-ivory editorial labels,
+- contextual skyline/environment collage,
+- fast staggered motion,
+- strong final poster frame.
+
+Future KEC videos may look different in subject, palette, density, and composition, but should not drop below this level of visual richness, layering, and asset integrity unless the user explicitly asks for a simpler treatment.
