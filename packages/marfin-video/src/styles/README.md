@@ -48,3 +48,8 @@ The approved default quality bar is now standardized:
 - verify all assets visibly render before calling the composition complete.
 
 After the user approves the concept, proceed directly to asset generation + Remotion build instead of asking for another production-plan approval.
+
+
+### ZIP delivery
+
+For KEC builds that require generated binary assets in the local Remotion repo, deliver a downloadable ZIP with the assets and an `install.ps1` helper. This is part of the standard workflow.
