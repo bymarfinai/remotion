@@ -332,3 +332,16 @@ For ordinary prompt-to-video use:
 6. revise from visual feedback.
 
 Do not insert another long “production pack” approval step after the concept has already been approved unless a material creative decision truly needs user input.
+
+
+### ZIP delivery rule
+
+When KEC production uses generated binary assets that must exist in the user's local Remotion repo, always provide a downloadable ZIP package containing the required assets plus an installer script.
+
+The ZIP should normally include:
+- all generated image/audio/video assets required by the composition,
+- `install.ps1` that copies the assets into the correct project folder,
+- optional verification output for file names and sizes,
+- README instructions.
+
+Do not assume connector-side binary upload is sufficient. The user should receive the ZIP whenever local asset installation is needed.
