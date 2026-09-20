@@ -96,11 +96,12 @@ const BackgroundAtmosphere: React.FC = () => {
         src={PAPER}
         style={{
           position: 'absolute',
-          left: -70,
-          top: 1045,
-          width: 610,
-          opacity: 0.085,
+          left: -95,
+          top: 1015,
+          width: 760,
+          opacity: 0.24,
           transform: 'rotate(-6deg)',
+          filter: 'brightness(0.78) contrast(1.08)',
         }}
       />
 
@@ -108,11 +109,25 @@ const BackgroundAtmosphere: React.FC = () => {
         src={PAPER}
         style={{
           position: 'absolute',
-          right: -95,
-          top: 1160,
-          width: 560,
-          opacity: 0.060,
+          right: -120,
+          top: 1225,
+          width: 690,
+          opacity: 0.18,
           transform: 'rotate(6deg)',
+          filter: 'brightness(0.72) contrast(1.08)',
+        }}
+      />
+
+      <Img
+        src={PAPER}
+        style={{
+          position: 'absolute',
+          left: -110,
+          top: 690,
+          width: 520,
+          opacity: 0.16,
+          transform: 'rotate(5deg)',
+          filter: 'brightness(0.68) contrast(1.10)',
         }}
       />
 
