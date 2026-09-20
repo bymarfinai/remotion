@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import {spawn} from 'node:child_process';
-import {mkdir, writeFile} from 'node:fs/promises';
+import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import {dirname, isAbsolute, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import * as z from 'zod/v4';
+import {findStyle, STYLE_REGISTRY} from './styles';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,6 +33,81 @@ server.registerTool(
       },
     ],
   }),
+);
+
+server.registerTool(
+  'list_styles',
+  {
+    title: 'List Marfin Motion styles',
+    description:
+      'Lists the named creative-direction styles available to the Marfin Remotion workflow, including IDs and aliases.',
+  },
+  async () => ({
+    content: [
+      {
+        type: 'text',
+        text: STYLE_REGISTRY.map(
+          (style, index) =>
+            `${String(index + 1).padStart(3, '0')} | ${style.displayName}\n` +
+            `ID: ${style.id}\n` +
+            `Aliases: ${style.aliases.join(', ')}\n` +
+            `${style.summary}`,
+        ).join('\n\n'),
+      },
+    ],
+  }),
+);
+
+server.registerTool(
+  'get_style',
+  {
+    title: 'Get Marfin Motion style',
+    description:
+      'Resolves a style by ID, display name, or alias and returns its full creative-direction guide for video generation.',
+    inputSchema: {
+      style: z
+        .string()
+        .min(1)
+        .describe(
+          'Style ID, display name, or alias, for example KEC or kinetic-editorial-collage.',
+        ),
+    },
+  },
+  async ({style}) => {
+    const match = findStyle(style);
+
+    if (!match) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text:
+              `Unknown style: ${style}\nAvailable styles: ` +
+              STYLE_REGISTRY.map((item) => item.displayName).join(', '),
+          },
+        ],
+        isError: true,
+      };
+    }
+
+    const guide = await readFile(
+      resolve(__dirname, '..', match.guidePath),
+      'utf8',
+    );
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text:
+            `STYLE_ID: ${match.id}\n` +
+            `DISPLAY_NAME: ${match.displayName}\n` +
+            `ALIASES: ${match.aliases.join(', ')}\n\n` +
+            guide,
+        },
+      ],
+    };
+  },
 );
 
 server.registerTool(
