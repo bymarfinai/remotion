@@ -102,18 +102,21 @@ The camera should reinforce momentum, not imitate cinematic 3D camera work.
 - Avoid evenly distributed “template” layouts.
 - Cropping an object at the frame edge is allowed when intentional.
 
-## Asset Resolution Order
+## Asset Generation Policy
 
-When a scene requires a visual asset, use this order:
+The default user workflow is **assetless input**: the user gives the idea, style, duration, and format. The AI director is responsible for creating the visual concept and producing all required visual assets.
 
-1. Reuse a provided/reference asset when licensing and task context allow it.
-2. Use an existing project asset.
-3. Use an icon or SVG asset when the subject can be represented graphically.
-4. Use a photographic or illustrated image.
-5. Generate a new asset only when the required asset does not already exist or cannot be sourced appropriately.
-6. Build with CSS/React primitives only when that is the best visual representation.
+When a scene requires a visual element:
 
-Remotion is responsible for composition and animation; it does not need to draw every subject from scratch.
+1. Decide whether it should remain native Remotion content (HTML text, CSS shape, React component, SVG, chart, or simple icon).
+2. If the scene needs a photographic, illustrated, textured, cutout, environmental, or decorative image asset, generate it automatically.
+3. Store generated assets with the video project and use them from Remotion as normal image/video/audio assets.
+4. Keep typography as HTML/SVG/React wherever practical so text remains sharp and editable.
+5. Do not ask the user to source images, icons, textures, cutouts, or backgrounds for the ordinary prompt-to-video workflow.
+
+Reference media supplied by the user is treated as creative-direction input, not as a requirement that the user provide production assets.
+
+Remotion is responsible for composition, animation, timing, typography, and rendering. The AI director is responsible for concept, storyboard, asset planning, and asset generation.
 
 ## Texture Rules
 
