@@ -17,7 +17,7 @@ const C = {
 };
 
 const MONAS = staticFile('generated/monas-kec-v2/monas.webp');
-const SHEET = staticFile('generated/monas-kec-v2/asset-sheet.webp');
+const SKYLINE = staticFile('generated/monas-kec-v2/skyline.webp');
 
 const clamp = {
   extrapolateLeft: 'clamp' as const,
@@ -45,66 +45,6 @@ const enter = (
     opacity: interpolate(p, [0, 0.06, 1], [0, 1, 1], clamp),
     scale: interpolate(p, [0, 0.72, 1], [fromScale, 1.06, 1], clamp),
   };
-};
-
-const SheetCrop: React.FC<{
-  cropX: number;
-  cropY: number;
-  cropW: number;
-  cropH: number;
-  width: number;
-  left?: number;
-  right?: number;
-  top?: number;
-  bottom?: number;
-  opacity?: number;
-  transform?: string;
-  zIndex?: number;
-}> = ({
-  cropX,
-  cropY,
-  cropW,
-  cropH,
-  width,
-  left,
-  right,
-  top,
-  bottom,
-  opacity = 1,
-  transform,
-  zIndex = 1,
-}) => {
-  const scale = width / cropW;
-  const height = cropH * scale;
-
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        width,
-        height,
-        left,
-        right,
-        top,
-        bottom,
-        overflow: 'hidden',
-        opacity,
-        transform,
-        zIndex,
-      }}
-    >
-      <Img
-        src={SHEET}
-        style={{
-          position: 'absolute',
-          width: 1024 * scale,
-          height: 1024 * scale,
-          left: -cropX * scale,
-          top: -cropY * scale,
-        }}
-      />
-    </div>
-  );
 };
 
 const PaperTexture: React.FC = () => (
@@ -190,17 +130,18 @@ const GeneratedSkyline: React.FC = () => {
   });
 
   return (
-    <SheetCrop
-      cropX={2}
-      cropY={0}
-      cropW={1020}
-      cropH={340}
-      width={1200}
-      left={-60}
-      bottom={30}
-      zIndex={5}
-      opacity={interpolate(p, [0, 0.06, 1], [0, 1, 1], clamp)}
-      transform={`translateY(${interpolate(p, [0, 1], [180, 0], clamp)}px) rotate(-1.5deg)`}
+    <Img
+      src={SKYLINE}
+      style={{
+        position: 'absolute',
+        zIndex: 5,
+        width: 1160,
+        left: -40,
+        bottom: 65,
+        opacity: interpolate(p, [0, 0.06, 1], [0, 1, 1], clamp),
+        transform: `translateY(${interpolate(p, [0, 1], [180, 0], clamp)}px) rotate(-1.5deg)`,
+        filter: 'contrast(1.04)',
+      }}
     />
   );
 };
@@ -210,39 +151,73 @@ const GeneratedCloud: React.FC = () => {
   const p = interpolate(frame, [22, 38], [0, 1], clamp);
 
   return (
-    <SheetCrop
-      cropX={510}
-      cropY={389}
-      cropW={514}
-      cropH={171}
-      width={560}
-      left={-40}
-      top={545}
-      zIndex={8}
-      opacity={p * 0.95}
-      transform={`translateX(${interpolate(p, [0, 1], [-100, 0], clamp)}px) rotate(-3deg)`}
+    <div
+      style={{
+        position: 'absolute',
+        zIndex: 8,
+        left: -20,
+        top: 540,
+        width: 520,
+        height: 185,
+        opacity: p * 0.9,
+        transform: `translateX(${interpolate(p, [0, 1], [-100, 0], clamp)}px) rotate(-3deg)`,
+        backgroundImage:
+          'radial-gradient(circle, rgba(243,235,221,.95) 0 2px, transparent 2.3px)',
+        backgroundSize: '9px 9px',
+        borderRadius: '50%',
+        WebkitMaskImage:
+          'radial-gradient(ellipse at 50% 72%, black 0 60%, transparent 63%)',
+      }}
     />
   );
 };
 
 const GeneratedBirds: React.FC = () => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const e = enter(frame, fps, 94, 0.72);
+
+  const Bird = ({
+    left,
+    top,
+    width,
+    delay,
+    rotate,
+  }: {
+    left: number;
+    top: number;
+    width: number;
+    delay: number;
+    rotate: number;
+  }) => {
+    const p = interpolate(frame, [delay, delay + 14], [0, 1], clamp);
+    return (
+      <svg
+        viewBox="0 0 120 72"
+        style={{
+          position: 'absolute',
+          zIndex: 23,
+          left,
+          top,
+          width,
+          opacity: p,
+          transform: `translateX(${interpolate(p, [0, 1], [-80, 0], clamp)}px) rotate(${rotate}deg)`,
+        }}
+      >
+        <path
+          d="M56 42C40 12 19 9 4 18c20 1 34 13 46 33 5 7 13 9 18 3 10-12 22-21 48-23-17-12-37-12-53 11z"
+          fill="#ECE5D9"
+          stroke="#252525"
+          strokeWidth="3"
+        />
+      </svg>
+    );
+  };
 
   return (
-    <SheetCrop
-      cropX={2}
-      cropY={350}
-      cropW={495}
-      cropH={330}
-      width={360}
-      right={42}
-      top={360}
-      zIndex={23}
-      opacity={e.opacity}
-      transform={`translateX(${interpolate(e.p, [0, 1], [120, 0], clamp)}px) rotate(4deg) scale(${e.scale})`}
-    />
+    <>
+      <Bird left={650} top={390} width={125} delay={94} rotate={-10} />
+      <Bird left={785} top={500} width={100} delay={101} rotate={6} />
+      <Bird left={535} top={515} width={86} delay={107} rotate={12} />
+    </>
   );
 };
 
@@ -337,15 +312,15 @@ const JakartaLabel: React.FC = () => {
         transform: `translateX(${interpolate(e.p, [0, 1], [150, 0], clamp)}px) scale(${e.scale}) rotate(-4deg)`,
       }}
     >
-      <SheetCrop
-        cropX={62}
-        cropY={700}
-        cropW={900}
-        cropH={300}
-        width={510}
-        left={0}
-        top={0}
-        zIndex={0}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: C.cream,
+          clipPath:
+            'polygon(1% 15%,8% 9%,17% 13%,27% 7%,38% 12%,49% 8%,61% 13%,72% 6%,83% 12%,98% 8%,99% 83%,92% 89%,81% 85%,69% 92%,57% 87%,45% 94%,31% 88%,18% 94%,3% 87%)',
+          zIndex: 0,
+        }}
       />
       <div
         style={{
