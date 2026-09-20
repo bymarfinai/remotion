@@ -22,7 +22,7 @@ export const VIDEO_STYLE_REGISTRY: VideoStyleDefinition[] = [
       'magazine collage',
     ],
     description:
-      'Photographic cutouts, paper/grain texture, bold editorial typography, geometric layers, fast stagger, overshoot, slight rotation, and subtle camera push.',
+      'Layered generated/photo cutouts, contextual collage imagery, distressed charcoal/paper texture, warm-ivory labels, bold native typography, cobalt/orange graphic masses, fast stagger, overshoot, slight rotation, and subtle camera push.',
   },
 ];
 
