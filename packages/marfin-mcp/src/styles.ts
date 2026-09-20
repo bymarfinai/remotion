@@ -12,7 +12,7 @@ export const STYLE_REGISTRY: MarfinStyle[] = [
     displayName: 'Kinetic Editorial Collage',
     aliases: ['KEC', 'editorial collage', 'cutout collage', 'magazine collage'],
     summary:
-      'Fast editorial collage motion built from photographic cutouts, bold typography, paper texture, geometric layers, staggered entrances, overshoot, and subtle camera movement.',
+      'Layered editorial collage motion using generated/photo cutouts, contextual imagery, distressed paper texture, bold native typography, cobalt/orange graphic masses, warm-ivory paper labels, staggered entrances, overshoot, and subtle camera movement.',
     guidePath: 'styles/kinetic-editorial-collage/STYLE.md',
   },
 ];
