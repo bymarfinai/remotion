@@ -2,6 +2,7 @@ import {Composition, Folder} from 'remotion';
 import {MarfinTest} from './MarfinTest';
 import {KECStylePreview} from './styles/kinetic-editorial-collage/StylePreview';
 import {MonasKECVideo} from './generated/monas-kec-v1/Video';
+import {MonasKECV2} from './generated/monas-kec-v2/Video';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -24,6 +25,14 @@ export const RemotionRoot: React.FC = () => {
           <Composition
             id="Monas-5s-v1"
             component={MonasKECVideo}
+            durationInFrames={150}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+          <Composition
+            id="Monas-5s-v2"
+            component={MonasKECV2}
             durationInFrames={150}
             fps={30}
             width={1080}
