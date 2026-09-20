@@ -16,8 +16,12 @@ const C = {
   blue: '#0B79E8',
 };
 
-const MONAS = staticFile('generated/monas-kec-v2/monas.webp');
-const SKYLINE = staticFile('generated/monas-kec-v2/skyline.webp');
+const MONAS = staticFile('generated/monas-kec-v3/monas.webp');
+const SKYLINE = staticFile('generated/monas-kec-v3/skyline.webp');
+const BIRDS = staticFile('generated/monas-kec-v3/birds.webp');
+const CLOUD = staticFile('generated/monas-kec-v3/cloud.webp');
+const PAPER = staticFile('generated/monas-kec-v3/paper-strip.webp');
+const TEXTURE = staticFile('generated/monas-kec-v3/texture.webp');
 
 const clamp = {
   extrapolateLeft: 'clamp' as const,
@@ -52,11 +56,23 @@ const BackgroundAtmosphere: React.FC = () => {
 
   return (
     <>
+      <Img
+        src={TEXTURE}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          opacity: 0.72,
+          filter: 'contrast(1.08) brightness(0.82)',
+        }}
+      />
+
       <AbsoluteFill
         style={{
           background:
-            'radial-gradient(circle at 26% 18%, rgba(255,90,18,0.18), transparent 30%), radial-gradient(circle at 74% 42%, rgba(11,121,232,0.18), transparent 36%), radial-gradient(circle at 50% 84%, rgba(255,255,255,0.045), transparent 32%)',
-          opacity: 0.95,
+            'radial-gradient(circle at 24% 18%, rgba(255,90,18,0.18), transparent 30%), radial-gradient(circle at 76% 42%, rgba(11,121,232,0.20), transparent 36%), linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.22))',
         }}
       />
 
@@ -64,11 +80,11 @@ const BackgroundAtmosphere: React.FC = () => {
         style={{
           position: 'absolute',
           left: -120,
-          top: 300,
+          top: 310,
           width: 560,
           height: 560,
           borderRadius: '50%',
-          opacity: 0.12,
+          opacity: 0.11,
           backgroundImage:
             'radial-gradient(circle, rgba(243,235,221,0.92) 0 2px, transparent 2.4px)',
           backgroundSize: '12px 12px',
@@ -76,66 +92,34 @@ const BackgroundAtmosphere: React.FC = () => {
         }}
       />
 
-      <div
+      <Img
+        src={PAPER}
         style={{
           position: 'absolute',
-          right: -150,
-          bottom: 100,
-          width: 500,
-          height: 500,
-          borderRadius: '50%',
-          opacity: 0.09,
-          backgroundImage:
-            'radial-gradient(circle, rgba(243,235,221,0.9) 0 2px, transparent 2.4px)',
-          backgroundSize: '12px 12px',
-          transform: `rotate(${interpolate(frame, [0, 149], [4, -4], clamp)}deg)`,
+          left: -150,
+          top: 1030,
+          width: 720,
+          opacity: 0.10,
+          transform: 'rotate(-7deg)',
         }}
       />
 
-      <div
+      <Img
+        src={PAPER}
         style={{
           position: 'absolute',
-          left: -30,
-          top: 1040,
-          width: 520,
-          height: 220,
-          background: 'rgba(243,235,221,0.075)',
-          clipPath:
-            'polygon(0 18%,8% 10%,19% 16%,30% 9%,42% 14%,54% 8%,67% 13%,79% 7%,92% 12%,100% 9%,100% 100%,0 100%)',
-          transform: 'rotate(-5deg)',
-        }}
-      />
-
-      <div
-        style={{
-          position: 'absolute',
-          right: -70,
-          top: 1120,
-          width: 500,
-          height: 190,
-          background: 'rgba(243,235,221,0.055)',
-          clipPath:
-            'polygon(0 16%,12% 8%,25% 14%,40% 7%,55% 13%,69% 6%,82% 12%,100% 9%,100% 100%,0 100%)',
-          transform: 'rotate(4deg)',
-        }}
-      />
-
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.18,
-          mixBlendMode: 'screen',
-          backgroundImage:
-            'radial-gradient(circle at 20% 18%, rgba(255,255,255,.1) 0 1px, transparent 1.2px), radial-gradient(circle at 76% 68%, rgba(255,255,255,.07) 0 1px, transparent 1.1px), radial-gradient(circle at 40% 80%, rgba(255,255,255,.05) 0 1px, transparent 1.1px)',
-          backgroundSize: '8px 8px, 13px 13px, 11px 11px',
+          right: -180,
+          top: 1140,
+          width: 670,
+          opacity: 0.075,
+          transform: 'rotate(7deg)',
         }}
       />
 
       <AbsoluteFill
         style={{
           background:
-            'radial-gradient(circle at center, transparent 50%, rgba(0,0,0,0.24) 100%)',
+            'radial-gradient(circle at center, transparent 48%, rgba(0,0,0,0.28) 100%)',
         }}
       />
     </>
@@ -246,22 +230,17 @@ const GeneratedCloud: React.FC = () => {
   const p = interpolate(frame, [22, 38], [0, 1], clamp);
 
   return (
-    <div
+    <Img
+      src={CLOUD}
       style={{
         position: 'absolute',
         zIndex: 8,
-        left: -20,
-        top: 540,
-        width: 520,
-        height: 185,
-        opacity: p * 0.9,
-        transform: `translateX(${interpolate(p, [0, 1], [-100, 0], clamp)}px) rotate(-3deg)`,
-        backgroundImage:
-          'radial-gradient(circle, rgba(243,235,221,.95) 0 2px, transparent 2.3px)',
-        backgroundSize: '9px 9px',
-        borderRadius: '50%',
-        WebkitMaskImage:
-          'radial-gradient(ellipse at 50% 72%, black 0 60%, transparent 63%)',
+        left: -45,
+        top: 500,
+        width: 620,
+        opacity: p * 0.88,
+        transform: `translateX(${interpolate(p, [0, 1], [-110, 0], clamp)}px) rotate(-4deg)`,
+        filter: 'drop-shadow(0 8px 0 rgba(0,0,0,.12))',
       }}
     />
   );
@@ -269,50 +248,23 @@ const GeneratedCloud: React.FC = () => {
 
 const GeneratedBirds: React.FC = () => {
   const frame = useCurrentFrame();
-
-  const Bird = ({
-    left,
-    top,
-    width,
-    delay,
-    rotate,
-  }: {
-    left: number;
-    top: number;
-    width: number;
-    delay: number;
-    rotate: number;
-  }) => {
-    const p = interpolate(frame, [delay, delay + 14], [0, 1], clamp);
-    return (
-      <svg
-        viewBox="0 0 120 72"
-        style={{
-          position: 'absolute',
-          zIndex: 23,
-          left,
-          top,
-          width,
-          opacity: p,
-          transform: `translateX(${interpolate(p, [0, 1], [-80, 0], clamp)}px) rotate(${rotate}deg)`,
-        }}
-      >
-        <path
-          d="M56 42C40 12 19 9 4 18c20 1 34 13 46 33 5 7 13 9 18 3 10-12 22-21 48-23-17-12-37-12-53 11z"
-          fill="#ECE5D9"
-          stroke="#252525"
-          strokeWidth="3"
-        />
-      </svg>
-    );
-  };
+  const {fps} = useVideoConfig();
+  const e = enter(frame, fps, 94, 0.72);
 
   return (
-    <>
-      <Bird left={650} top={390} width={125} delay={94} rotate={-10} />
-      <Bird left={785} top={500} width={100} delay={101} rotate={6} />
-      <Bird left={535} top={515} width={86} delay={107} rotate={12} />
-    </>
+    <Img
+      src={BIRDS}
+      style={{
+        position: 'absolute',
+        zIndex: 23,
+        right: 30,
+        top: 330,
+        width: 390,
+        opacity: e.opacity,
+        transform: `translateX(${interpolate(e.p, [0, 1], [130, 0], clamp)}px) rotate(4deg) scale(${e.scale})`,
+        filter: 'drop-shadow(0 5px 0 rgba(0,0,0,.18))',
+      }}
+    />
   );
 };
 
@@ -407,14 +359,16 @@ const JakartaLabel: React.FC = () => {
         transform: `translateX(${interpolate(e.p, [0, 1], [150, 0], clamp)}px) scale(${e.scale}) rotate(-4deg)`,
       }}
     >
-      <div
+      <Img
+        src={PAPER}
         style={{
           position: 'absolute',
           inset: 0,
-          background: C.cream,
-          clipPath:
-            'polygon(1% 15%,8% 9%,17% 13%,27% 7%,38% 12%,49% 8%,61% 13%,72% 6%,83% 12%,98% 8%,99% 83%,92% 89%,81% 85%,69% 92%,57% 87%,45% 94%,31% 88%,18% 94%,3% 87%)',
+          width: '100%',
+          height: '100%',
+          objectFit: 'fill',
           zIndex: 0,
+          filter: 'drop-shadow(0 8px 0 rgba(0,0,0,.18))',
         }}
       />
       <div
