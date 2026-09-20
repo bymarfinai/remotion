@@ -4,6 +4,7 @@ import {
   Img,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
@@ -15,11 +16,8 @@ const C = {
   blue: '#0B79E8',
 };
 
-const MONAS =
-  'https://raw.githubusercontent.com/bymarfinai/remotion/marfin/packages/marfin-video/public/generated/monas-kec-v2/monas.webp';
-
-const SHEET =
-  'https://raw.githubusercontent.com/bymarfinai/remotion/marfin/packages/marfin-video/public/generated/monas-kec-v2/asset-sheet.webp';
+const MONAS = staticFile('generated/monas-kec-v2/monas.webp');
+const SHEET = staticFile('generated/monas-kec-v2/asset-sheet.webp');
 
 const clamp = {
   extrapolateLeft: 'clamp' as const,
