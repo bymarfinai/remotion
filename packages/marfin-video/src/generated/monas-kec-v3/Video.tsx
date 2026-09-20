@@ -96,11 +96,11 @@ const BackgroundAtmosphere: React.FC = () => {
         src={PAPER}
         style={{
           position: 'absolute',
-          left: -150,
-          top: 1030,
-          width: 720,
-          opacity: 0.10,
-          transform: 'rotate(-7deg)',
+          left: -70,
+          top: 1045,
+          width: 610,
+          opacity: 0.085,
+          transform: 'rotate(-6deg)',
         }}
       />
 
@@ -108,11 +108,11 @@ const BackgroundAtmosphere: React.FC = () => {
         src={PAPER}
         style={{
           position: 'absolute',
-          right: -180,
-          top: 1140,
-          width: 670,
-          opacity: 0.075,
-          transform: 'rotate(7deg)',
+          right: -95,
+          top: 1160,
+          width: 560,
+          opacity: 0.060,
+          transform: 'rotate(6deg)',
         }}
       />
 
@@ -235,9 +235,9 @@ const GeneratedCloud: React.FC = () => {
       style={{
         position: 'absolute',
         zIndex: 8,
-        left: -45,
-        top: 500,
-        width: 620,
+        left: -20,
+        top: 515,
+        width: 560,
         opacity: p * 0.88,
         transform: `translateX(${interpolate(p, [0, 1], [-110, 0], clamp)}px) rotate(-4deg)`,
         filter: 'drop-shadow(0 8px 0 rgba(0,0,0,.12))',
@@ -257,9 +257,9 @@ const GeneratedBirds: React.FC = () => {
       style={{
         position: 'absolute',
         zIndex: 23,
-        right: 30,
-        top: 330,
-        width: 390,
+        right: 45,
+        top: 350,
+        width: 345,
         opacity: e.opacity,
         transform: `translateX(${interpolate(e.p, [0, 1], [130, 0], clamp)}px) rotate(4deg) scale(${e.scale})`,
         filter: 'drop-shadow(0 5px 0 rgba(0,0,0,.18))',
