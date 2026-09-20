@@ -2,7 +2,7 @@
 
 **Style ID:** `kinetic-editorial-collage`  
 **Short alias:** `KEC`  
-**Version:** 0.1.0
+**Version:** 1.0.0
 
 ## Purpose
 
@@ -196,3 +196,139 @@ For example:
 `Big Ben reference -> Monas output`
 
 The subject changes, but the editorial collage character, layering, typography, texture, and motion grammar remain recognizably related.
+
+
+## KEC Production Standard v1
+
+This is the default production quality bar for KEC when the user does not give a more specific visual direction.
+
+The accepted baseline is the layered editorial-collage language proven by the Monas KEC V3 test: real/generated photographic cutouts, contextual collage imagery, tactile print texture, bold native typography, geometric color masses, torn-paper accents, and fast layered motion.
+
+### Default visual system
+
+When no brand palette is supplied, start from:
+
+- ink / charcoal: `#111111`
+- warm ivory / paper: `#F3E4C8`
+- cobalt blue: `#0B79E8`
+- energetic orange: `#FF5A12`
+
+These are defaults, not mandatory brand colors. A user-supplied palette overrides them while preserving KEC contrast and hierarchy.
+
+### Required layer stack
+
+A finished KEC scene should normally contain these planes:
+
+1. textured charcoal or editorial background,
+2. subtle atmospheric haze / vignette / print noise,
+3. geometric color masses,
+4. contextual generated imagery such as skyline, architecture, map, newspaper, or environment fragment,
+5. one dominant generated hero cutout,
+6. oversized native Remotion headline typography,
+7. paper label / torn strip / caption treatment,
+8. 1–3 supporting decorative cutouts such as birds, clouds, arrows, tape, stamps, or archival fragments,
+9. final grain / print unification pass.
+
+Not every scene needs every decorative element, but the final composition must feel layered rather than like flat shapes on a blank background.
+
+### Asset standard
+
+Use **real generated image assets** for visual content that benefits from photographic or tactile detail:
+
+- hero subject,
+- skyline / environment / contextual collage,
+- background texture,
+- clouds / smoke / paper texture when visually important,
+- decorative photographic cutouts.
+
+Keep these native to Remotion whenever practical:
+
+- headline and body text,
+- simple circles, bars, arrows, bursts, and underlines,
+- simple icons and SVG marks,
+- timing, transforms, masks, and transitions.
+
+Plain cream paper strips may be simple graphic assets. They do not need a photograph inside them. Their job is editorial framing and readability.
+
+### Background quality rule
+
+A final KEC render must not end on a visually flat, empty black background unless the brief explicitly requests it.
+
+Default background treatment should combine:
+
+- distressed charcoal or paper texture,
+- subtle grain,
+- restrained halftone / photocopy character,
+- optional low-opacity blue/orange atmospheric tint,
+- torn-paper residue or other editorial depth where useful.
+
+Background detail must remain subordinate to the hero.
+
+### No-placeholder rule
+
+After concept approval:
+
+- do not replace required generated imagery with generic CSS/SVG placeholders,
+- do not animate a full finished poster as one raster image and call it a layered KEC video,
+- do not keep broken, invisible, or empty asset layers in the final composition,
+- regenerate or repair the asset instead of silently downgrading the visual.
+
+A full-frame generated image may be used as a **creative reference / target frame**, but the production video should be reconstructed from independently controllable layers.
+
+### Asset verification gate
+
+Before a KEC composition is treated as complete:
+
+1. generated files must exist in the project,
+2. Remotion must load them from project assets, normally through `staticFile()`,
+3. every required visual layer must visibly render in Studio,
+4. hero, contextual image, texture, and key decorative assets must be checked at a representative late frame,
+5. the composition must still read clearly with Studio selection outlines disabled / ignored,
+6. no missing asset may be substituted by an accidental blank region.
+
+Do not declare the KEC build finished before this visual verification passes.
+
+### Default short-form spec
+
+If the user only provides topic + duration + “KEC” and gives no format:
+
+- aspect ratio: **9:16**
+- resolution: **1080 × 1920**
+- fps: **30**
+- preserve the requested duration exactly.
+
+Other formats remain supported when requested.
+
+### Default 5-second pacing
+
+For a 5-second / 150-frame KEC piece, a useful baseline is:
+
+- frames 0–20: texture + graphic masses,
+- frames 18–45: contextual collage / background fragments,
+- frames 40–80: hero cutout reveal,
+- frames 70–115: headline + label + supporting decorative layers,
+- frames 110–150: settle, final composition hold, subtle camera push.
+
+This is a grammar, not a rigid template.
+
+### Motion quality bar
+
+- stagger layers rather than revealing everything together,
+- use short springs and quick overshoot,
+- allow small rotational settles,
+- use a restrained composition-scale camera push,
+- prioritize a strong final poster-like frame,
+- avoid long floaty animation.
+
+### User workflow
+
+For ordinary prompt-to-video use:
+
+1. user gives idea + KEC + duration,
+2. AI director proposes a concise concept,
+3. user approves or revises,
+4. after approval, immediately generate the required assets and build the Remotion composition,
+5. show the resulting Studio preview,
+6. revise from visual feedback.
+
+Do not insert another long “production pack” approval step after the concept has already been approved unless a material creative decision truly needs user input.
