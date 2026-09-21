@@ -15,6 +15,14 @@ export const STYLE_REGISTRY: MarfinStyle[] = [
       'Layered editorial collage motion using generated/photo cutouts, contextual imagery, distressed paper texture, bold native typography, cobalt/orange graphic masses, warm-ivory paper labels, staggered entrances, overshoot, and subtle camera movement.',
     guidePath: 'styles/kinetic-editorial-collage/STYLE.md',
   },
+  {
+    id: 'editorial-infographic-motion',
+    displayName: 'Editorial Infographic Motion',
+    aliases: ['EIM', 'editorial infographic', 'infographic motion', 'clean editorial motion'],
+    summary:
+      'Clean editorial explainer motion using ivory cards, navy/blue typography, circular masks, curved paths, markers, segmented bars, restrained cutouts, and sequential information reveals.',
+    guidePath: 'styles/editorial-infographic-motion/STYLE.md',
+  },
 ];
 
 const normalize = (value: string) =>
