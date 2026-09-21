@@ -134,3 +134,27 @@ Root cause:
 - it did not preserve enough negative space between beats.
 
 Next action: rebuild from the frame-by-frame source-of-truth in `REFERENCE_BREAKDOWN.md`. Do not iterate v4 composition logic.
+
+
+## V5 full reset
+
+Candidate: `Monas-7s-EIM-v5`.
+
+V5 is the first full reset after rejecting v4. It follows the frame-by-frame reference grammar instead of the earlier infographic-card interpretation:
+
+- 7 seconds / 210 frames,
+- persistent white editorial card with thin navy border and soft shadow,
+- very large negative space,
+- one dominant idea per beat,
+- setup sentence + oversized keyword hierarchy,
+- dedicated monochrome/duotone EIM asset pack,
+- clean circular image masks,
+- one block-build beat,
+- one curved-path beat,
+- one circular-payoff beat,
+- sparse final crowd payoff,
+- no KEC torn paper, distressed texture, orange, birds, or skyline collage residue.
+
+Binary assets for this candidate are delivered separately as `monas-eim-v5-asset-pack.zip` with `install.ps1`.
+
+Do not promote EIM to a locked production standard until V5 is visually reviewed.
