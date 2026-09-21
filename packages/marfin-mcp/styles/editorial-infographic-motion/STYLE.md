@@ -83,3 +83,20 @@ When new generated binary assets are required locally, provide a ZIP with all as
 The first validation composition is `Monas-5s-EIM-v1`.
 
 It intentionally reuses the already-installed Monas cutout from the KEC test so this first EIM prototype does not require another binary-asset ZIP. Future EIM tests must use the ZIP delivery rule whenever they introduce new generated binary assets.
+
+
+## V2 refinement target
+
+The current candidate composition is `Monas-5s-EIM-v2`.
+
+Compared with v1, v2 intentionally raises the bar on:
+- more assertive hero cropping,
+- stronger asymmetry,
+- more integrated path/timeline storytelling,
+- layered annotation cards,
+- sharper information hierarchy,
+- more editorial tension,
+- less “static infographic template” feel,
+- a stronger final poster frame.
+
+Do not lock the style as final until this candidate is visually reviewed and approved.
