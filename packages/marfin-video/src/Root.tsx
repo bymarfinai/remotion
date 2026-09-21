@@ -8,6 +8,7 @@ import {MonasEIMV1} from './generated/monas-eim-v1/Video';
 import {MonasEIMV2} from './generated/monas-eim-v2/Video';
 import {MonasEIMV3} from './generated/monas-eim-v3/Video';
 import {MonasEIMV4} from './generated/monas-eim-v4/Video';
+import {MonasEIMV5} from './generated/monas-eim-v5/Video';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -80,6 +81,14 @@ export const RemotionRoot: React.FC = () => {
           <Composition
             id="Monas-7s-EIM-v4"
             component={MonasEIMV4}
+            durationInFrames={210}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+          <Composition
+            id="Monas-7s-EIM-v5"
+            component={MonasEIMV5}
             durationInFrames={210}
             fps={30}
             width={1080}
