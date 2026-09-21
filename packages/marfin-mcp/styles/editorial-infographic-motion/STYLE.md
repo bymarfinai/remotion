@@ -100,3 +100,21 @@ Compared with v1, v2 intentionally raises the bar on:
 - a stronger final poster frame.
 
 Do not lock the style as final until this candidate is visually reviewed and approved.
+
+
+## V3 correction
+
+Frame-by-frame review of the reference showed that v1/v2 were too dense and too static. The reference language is not one packed infographic card. It is a sequence of minimal editorial micro-scenes inside a consistent framed stage.
+
+The v3 candidate therefore shifts to:
+- one idea per beat,
+- much more negative space,
+- one dominant visual device per scene,
+- repeated curved-path language as a transition/story device,
+- phrase-by-phrase editorial copy,
+- occasional single cutout object rather than many simultaneous infographic widgets,
+- continuity through the persistent card, palette, path, and type hierarchy.
+
+Candidate: `Monas-5s-EIM-v3`.
+
+Do not lock final EIM standard until this version is visually reviewed.
