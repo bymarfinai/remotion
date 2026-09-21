@@ -118,3 +118,19 @@ The v3 candidate therefore shifts to:
 Candidate: `Monas-5s-EIM-v3`.
 
 Do not lock final EIM standard until this version is visually reviewed.
+
+
+## V4 review result
+
+**Rejected as a style match.**
+
+User review: v4 still did not match the supplied reference.
+
+Root cause:
+- v4 remained too close to an infographic-card system,
+- it reused KEC assets that belong to a different visual language,
+- it contained too many simultaneous information devices,
+- it lacked the reference's dedicated monochrome sculptural metaphor assets,
+- it did not preserve enough negative space between beats.
+
+Next action: rebuild from the frame-by-frame source-of-truth in `REFERENCE_BREAKDOWN.md`. Do not iterate v4 composition logic.
