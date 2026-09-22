@@ -183,3 +183,27 @@ Binary delivery:
 - assets install to `packages/marfin-video/public/generated/monas-eim-v6/`.
 
 Do not lock EIM as final production standard until the user reviews the actual V6 Studio output.
+
+
+## Asset decomposition rule
+
+The approved still frames are **visual references only**, never production assets.
+
+Do not animate a full approved poster/frame raster as the final EIM video.
+
+Like the accepted KEC workflow, EIM must be rebuilt from independent controllable layers:
+- hero cutout(s),
+- supporting imagery,
+- background/circle fields,
+- cloud/atmosphere assets,
+- crowd/environment assets,
+- timeline/path geometry,
+- measurement guides,
+- native text,
+- native simple shapes.
+
+Typography, lines, circles, paths, dots, dividers, counters, and measurement graphics should remain native Remotion/SVG/CSS whenever practical.
+
+Generated binary imagery should be delivered as a ZIP + install.ps1 and loaded independently with staticFile().
+
+The 7 approved still frames define composition, scale, spacing, crop, and hierarchy. Production motion must reproduce those frames from decomposed layers rather than use the flattened frames themselves.
