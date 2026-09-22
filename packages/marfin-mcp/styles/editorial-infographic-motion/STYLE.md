@@ -158,3 +158,28 @@ V5 is the first full reset after rejecting v4. It follows the frame-by-frame ref
 Binary assets for this candidate are delivered separately as `monas-eim-v5-asset-pack.zip` with `install.ps1`.
 
 Do not promote EIM to a locked production standard until V5 is visually reviewed.
+
+
+## V6 approved-board implementation
+
+Candidate: `Monas-10s-EIM-v6`.
+
+V6 is built directly from the approved 7-frame benchmark board and supersedes the earlier 5s/7s experiments.
+
+Locked execution choices:
+- 10 seconds / 300 frames / 30 fps / 1080x1920,
+- 7 scenes,
+- persistent white/ivory card, thin navy border, soft shadow,
+- small setup copy + large keyword hierarchy,
+- dedicated EIM asset pack in `generated/monas-eim-v6`,
+- clean navy/blue/off-white palette,
+- native SVG/CSS paths, dots, circles, and measurement guides,
+- no KEC texture/torn-paper/orange residue,
+- final benchmark remains the approved 7-frame visual board.
+
+Binary delivery:
+- `monas-eim-v6-asset-pack.zip`
+- includes `install.ps1`
+- assets install to `packages/marfin-video/public/generated/monas-eim-v6/`.
+
+Do not lock EIM as final production standard until the user reviews the actual V6 Studio output.
