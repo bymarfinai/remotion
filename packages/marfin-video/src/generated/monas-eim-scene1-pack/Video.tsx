@@ -5,7 +5,7 @@ import {HeaderCenter, HeaderLeft, HeaderRight} from './layers/Header';
 import {QuestionText} from './layers/Question';
 import {IconicTitle} from './layers/Iconic';
 import {SupportingCopy} from './layers/SupportingCopy';
-import {CityArtwork, PaleCircle} from './layers/CityCircle';
+import {CityArtwork} from './layers/CityCircle';
 import {FooterDash, FooterText} from './layers/Footer';
 
 export const MonasEIMScene1LayerPack: React.FC = () => {
@@ -31,7 +31,6 @@ export const MonasEIMScene1LayerPack: React.FC = () => {
           border: `2px solid ${EIM.navy}`,
         }}
       >
-        <PaleCircle />
         <CityArtwork />
 
         <QuestionText />
