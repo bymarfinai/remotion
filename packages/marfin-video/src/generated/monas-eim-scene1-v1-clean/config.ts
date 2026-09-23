@@ -1,24 +1,28 @@
 export const EIM = {
-  navy: '#163E73',
-  blue: '#275FFF',
+  navy: '#123D73',
+  blue: '#145CFF',
   paper: '#F7F4ED',
-  outer: '#0C2745',
-  pale: '#DFE6F0',
+  outer: '#0C315C',
 };
 
-export const SCENE1 = {
-  cardInset: 18,
-  cardRadius: 28,
-  headerLeft: {left: 56, top: 52},
-  headerCenter: {left: 540, top: 72, width: 58},
-  headerRight: {right: 54, top: 52},
-  question: {left: 72, top: 250, width: 470, fontSize: 76, lineHeight: 0.92},
-  iconic: {left: 70, top: 596, fontSize: 168, lineHeight: 0.80},
-  supporting: {left: 86, top: 1238, width: 220, fontSize: 24, lineHeight: 0.98},
-  paleCircle: {size: 700, right: -130, bottom: -96},
-  cityMask: {size: 470, right: 0, bottom: 56},
-  cloud: {left: -6, bottom: -10, width: 410},
-  skyline: {right: -8, bottom: 4, width: 356},
-  footerDash: {left: 58, bottom: 76, width: 56},
-  footerText: {left: 58, bottom: 42},
+export const DURATION = 150;
+
+export const exactScene1 = {
+  canvas: {width: 1080, height: 1920},
+  exactLock: {
+    enabled: true,
+    startFrame: 72,
+    endFrame: 82,
+  },
+  layers: {
+    headerLeft: {x: 71, y: 63, width: 135, height: 46},
+    headerCenter: {x: 504, y: 81, width: 73, height: 12},
+    headerRight: {x: 917, y: 68, width: 91, height: 25},
+    question: {x: 73, y: 271, width: 550, height: 278},
+    iconic: {x: 75, y: 628, width: 928, height: 208},
+    supporting: {x: 74, y: 1021, width: 266, height: 152},
+    city: {x: 300, y: 930, width: 780, height: 990},
+    footerDash: {x: 79, y: 1768, width: 77, height: 13},
+    footerText: {x: 79, y: 1792, width: 253, height: 28},
+  },
 };
