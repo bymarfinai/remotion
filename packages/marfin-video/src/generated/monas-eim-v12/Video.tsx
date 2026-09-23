@@ -52,7 +52,7 @@ const Text: React.FC<{children:React.ReactNode;left:number;top:number;width:numb
 ({children,left,top,width,size,weight=700,color=NAVY,lineHeight=.98,letter='-.035em',opacity=1,y=0}) => (
   <div style={{
     position:'absolute',left,top,width,fontFamily:'Arial Narrow, Arial, Helvetica, sans-serif',
-    fontSize:size,fontWeight,letterSpacing:letter,lineHeight,color,opacity,
+    fontSize:size,fontWeight:weight,letterSpacing:letter,lineHeight,color,opacity,
     transform:`translateY(${y}px)`,zIndex:30
   }}>{children}</div>
 );
