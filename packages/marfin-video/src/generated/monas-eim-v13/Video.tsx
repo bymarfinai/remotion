@@ -305,8 +305,8 @@ export const MonasEIMV13: React.FC = () => {
   // Monas hero continues through 2 -> exits into 3, returns through 4/5/6/7.
   const monasOpacity = map(
     frame,
-    [20, 30, 54, 64, 88, 95, 112, 120, 142, 150, 205, 209],
-    [0, 0, 1, 0, 0, 1, 1, 0.75, 0.75, 1, 1, 1],
+    [20, 30, 54, 64, 142, 152, 205, 209],
+    [0, 0, 1, 0, 0, 1, 1, 1],
   );
   const monasX = map(
     frame,
@@ -870,8 +870,8 @@ export const MonasEIMV13: React.FC = () => {
             top={260}
             width={470}
             size={56}
-            opacity={visibility(frame, 179, 209, 6)}
-            y={enterExitY(frame, 179, 209, 20, 0)}
+            opacity={tween(frame, 179, 186)}
+            y={map(frame, [179, 187], [20, 0])}
           >
             A symbol today.<br />A stronger<br />tomorrow.
           </Copy>
@@ -883,8 +883,8 @@ export const MonasEIMV13: React.FC = () => {
               width={690}
               size={128}
               color={NAVY}
-              opacity={visibility(frame, 184 + index * 3, 209, 5)}
-              x={enterExitX(frame, 184 + index * 3, 209, -26, 0)}
+              opacity={tween(frame, 184 + index * 3, 190 + index * 3)}
+              x={map(frame, [184 + index * 3, 192 + index * 3], [-26, 0])}
             >
               {word}
             </Key>
@@ -893,7 +893,7 @@ export const MonasEIMV13: React.FC = () => {
             items={['PEOPLE', 'PLACES', 'POSSIBILITIES']}
             left={84}
             top={1470}
-            opacity={visibility(frame, 196, 209, 4)}
+            opacity={tween(frame, 196, 203)}
           />
         </div>
 
