@@ -7,47 +7,40 @@ export const EIM = {
 };
 
 export const SCENE1 = {
-  headerLeft: {left: 74, top: 58},
-  headerCenter: {left: 540, top: 77, width: 56},
-  headerRight: {right: 72, top: 60},
+  headerLeft: {left: 118, top: 118},
+  headerCenter: {left: 590, top: 144, width: 132},
+  headerRight: {right: 116, top: 124},
 
   question: {
-    left: 96,
-    top: 286,
-    width: 610,
+    left: 124,
+    top: 334,
+    width: 660,
     fontSize: 86,
     lineHeight: 0.91,
   },
 
   iconic: {
-    left: 88,
-    top: 650,
+    left: 124,
+    top: 655,
     width: 900,
-    fontSize: 196,
-    lineHeight: 0.78,
+    fontSize: 236,
+    lineHeight: 0.76,
   },
 
   supporting: {
-    left: 116,
-    top: 1210,
-    width: 245,
-    fontSize: 27,
+    left: 142,
+    top: 1320,
+    width: 270,
+    fontSize: 28,
     lineHeight: 1.0,
   },
 
-  cityCircle: {
-    right: -250,
-    top: 940,
-    size: 900,
+  cityArtwork: {
+    left: 452,
+    top: 1000,
+    width: 660,
   },
 
-  cityImage: {
-    left: 40,
-    top: 170,
-    width: 820,
-    height: 620,
-  },
-
-  footerDash: {left: 92, bottom: 84, width: 58},
-  footerText: {left: 92, bottom: 48},
+  footerDash: {left: 142, bottom: 124, width: 116},
+  footerText: {left: 142, bottom: 66},
 };
