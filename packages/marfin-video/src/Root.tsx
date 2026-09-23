@@ -15,6 +15,7 @@ import {MonasEIMV8} from './generated/monas-eim-v8/Video';
 import {MonasEIMV9} from './generated/monas-eim-v9/Video';
 import {MonasEIMV10} from './generated/monas-eim-v10/Video';
 import {MonasEIMV12} from './generated/monas-eim-v12/Video';
+import {MonasEIMScene1Exact} from './generated/monas-eim-scene1-exact/Scene1Exact';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -144,6 +145,14 @@ export const RemotionRoot: React.FC = () => {
             id="Monas-10s-EIM-v12"
             component={MonasEIMV12}
             durationInFrames={300}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+          <Composition
+            id="Monas-EIM-Scene1-Exact"
+            component={MonasEIMScene1Exact}
+            durationInFrames={30}
             fps={30}
             width={1080}
             height={1920}
