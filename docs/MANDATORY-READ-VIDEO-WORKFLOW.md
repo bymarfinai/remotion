@@ -105,6 +105,10 @@ Generate Clean Assets
 ↓
 Approval
 ↓
+SAVE Approved Assets to Repo
+↓
+Update Asset Manifest
+↓
 Move to Next Scene
 ```
 
@@ -124,6 +128,10 @@ Approval
 Generate Clean Assets Scene 1
 ↓
 Approval
+↓
+SAVE Scene 1 Approved Assets
+↓
+Update Asset Manifest
 
 THEN
 
@@ -140,6 +148,10 @@ Approval
 Generate Clean Assets Scene 2
 ↓
 Approval
+↓
+SAVE Scene 2 Approved Assets
+↓
+Update Asset Manifest
 
 THEN
 
@@ -155,11 +167,46 @@ Repeat until every storyboard scene is complete.
 - **Do not perform one full-video asset breakdown before individual scene approval.**
 - Scene generation must be approved before that scene's asset breakdown.
 - Asset breakdown must be approved before that scene's clean assets are generated.
-- Clean assets must be approved before moving to the next scene.
+- Clean assets must be approved before SAVE.
+- SAVE is mandatory before moving to the next scene.
+- Approved raster assets must be persisted to the repository, not left only in a temporary chat/workspace location.
 - ChatGPT generates the scene visual and the clean assets.
 - The user reviews and approves at each required approval gate.
 
 Only after all scenes have completed this loop does the selected Build Mechanism affect implementation.
+
+## Mandatory SAVE checkpoint
+
+After a scene's clean assets are approved, save them to the repository before moving to the next scene.
+
+Default path:
+
+```text
+packages/marfin-video/public/generated/<project-slug>/scene-XX/
+```
+
+Example:
+
+```text
+packages/marfin-video/public/generated/monas-eim-full-composition/
+├── scene-01/
+│   ├── monas.png
+│   ├── skyline-with-treeline.png
+│   ├── clouds.png
+│   └── foreground-plaza.png
+├── scene-02/
+└── assets-manifest.md
+```
+
+SAVE rules:
+
+- Master raster assets use **high-resolution PNG**.
+- Preserve transparency for cutouts when applicable.
+- Do not downscale or recompress the approved master just to reduce file size.
+- WebP or other optimized derivatives may be created later, but the PNG master remains the source of truth.
+- Update `assets-manifest.md` every time a scene is saved.
+- The manifest must record the scene number and exact approved filenames.
+- Do not move to the next scene until SAVE and manifest update are complete.
 
 ---
 
@@ -212,7 +259,7 @@ The scene preparation is still **one scene at a time**.
 
 After **all scenes** have completed:
 
-`Generate Scene → Approval → Asset Breakdown → Approval → Generate Clean Assets → Approval`
+`Generate Scene → Approval → Asset Breakdown → Approval → Generate Clean Assets → Approval → SAVE → Update Manifest`
 
 then:
 
@@ -268,11 +315,11 @@ Full Storyboard
 ↓
 Approval
 ↓
-Scene 1: Generate → Approve → Breakdown → Approve → Clean → Approve
+Scene 1: Generate → Approve → Breakdown → Approve → Clean → Approve → SAVE
 ↓
-Scene 2: Generate → Approve → Breakdown → Approve → Clean → Approve
+Scene 2: Generate → Approve → Breakdown → Approve → Clean → Approve → SAVE
 ↓
-Scene 3: Generate → Approve → Breakdown → Approve → Clean → Approve
+Scene 3: Generate → Approve → Breakdown → Approve → Clean → Approve → SAVE
 ↓
 ...
 ↓
@@ -453,6 +500,10 @@ GLOBAL VIDEO DEVELOPMENT
    Generate Clean Assets
    ↓
    Approval
+   ↓
+   SAVE Approved Assets to Repo
+   ↓
+   Update Asset Manifest
 
    THEN Scene 2
    SAME LOOP
