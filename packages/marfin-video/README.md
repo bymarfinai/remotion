@@ -2,6 +2,14 @@
 
 Status: cleanup for production workflow.
 
+## Mandatory production workflow
+
+All new motion-video production must follow:
+
+`PRODUCTION_WORKFLOW.md`
+
+Do not skip approval gates unless the user explicitly instructs otherwise.
+
 ## Active surface
 
 - `src/Root.tsx` — only exposes the compositions that matter right now.
@@ -14,12 +22,6 @@ Status: cleanup for production workflow.
 
 Older generated folders are intentionally kept in the repository for reference, but they are no longer registered in Remotion Studio.
 
-A full snapshot before this cleanup is preserved on branch:
+A full snapshot before cleanup is preserved on branch:
 
 `marfin-archive-2026-09-26`
-
-## Production rule for now
-
-Do not add new scene versions or installer/patcher workflows until the simplified production flow is locked.
-
-The next production workflow will be defined separately and should replace the older experimental process.
