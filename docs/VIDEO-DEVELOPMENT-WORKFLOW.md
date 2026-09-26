@@ -24,17 +24,9 @@ Choose exactly one:
 - `PER_SCENE`
 - `FULL_COMPOSITION`
 
-The Build Mechanism defines how the approved full storyboard is implemented.
+The Build Mechanism defines how the approved scenes are implemented and assembled in Remotion.
 
-Example:
-
-```text
-TYPE: EIM
-BUILD: FULL_COMPOSITION
-DURATION: 10s
-FPS: 30
-RESOLUTION: 1920x1080
-```
+It does **not** change the mandatory scene-preparation loop.
 
 ---
 
@@ -53,7 +45,17 @@ Full Storyboard
 ↓
 Storyboard Approval
 ↓
-Production using the selected Build Mechanism
+Prepare Scene 1
+↓
+Prepare Scene 2
+↓
+Prepare Scene 3
+↓
+...
+↓
+All Scenes Prepared
+↓
+Remotion Implementation using selected Build Mechanism
 ↓
 Motion
 ↓
@@ -68,9 +70,9 @@ Final Render
 
 Both build mechanisms start from one complete storyboard for the entire video.
 
-Do not create Scene 1 first and postpone the storyboard for later scenes.
+The Full Storyboard is the master visual reference.
 
-The full storyboard is the master visual reference for the whole production.
+Do not create the storyboard one scene at a time during production.
 
 ### Approval rule
 
@@ -80,17 +82,15 @@ Approval gates are mandatory.
 NOT APPROVED = DO NOT CONTINUE
 ```
 
-Do not silently move to the next stage while the current stage is still under review.
+Do not move to the next required stage while the current stage is still under review.
 
 ---
 
-# 3. Build Mechanism A — PER_SCENE
+# 3. Mandatory Scene-Preparation Loop — SAME FOR BOTH MECHANISMS
 
-Use `PER_SCENE` when individual scenes benefit from being built, checked, and refined separately.
+After Full Storyboard approval, production proceeds **one scene at a time**, in storyboard order.
 
-After the Full Storyboard is approved, process every scene using the same required loop.
-
-## Required per-scene loop
+For every scene:
 
 ```text
 Generate Scene
@@ -105,29 +105,86 @@ Generate Clean Assets
 ↓
 Approval
 ↓
-Implement Scene in Remotion
-↓
-Motion
+Move to Next Scene
 ```
 
-Then repeat the same loop for the next scene:
+Example:
 
 ```text
-Scene 1 loop
+SCENE 1
+
+Generate Scene 1
 ↓
-Scene 2 loop
+Approval
 ↓
-Scene 3 loop
+Asset Breakdown Scene 1
 ↓
+Approval
+↓
+Generate Clean Assets Scene 1
+↓
+Approval
+
+THEN
+
+SCENE 2
+
+Generate Scene 2
+↓
+Approval
+↓
+Asset Breakdown Scene 2
+↓
+Approval
+↓
+Generate Clean Assets Scene 2
+↓
+Approval
+
+THEN
+
+SCENE 3
 ...
 ```
 
-### After all scenes are complete
+Repeat until every storyboard scene is complete.
+
+## Hard rules
+
+- **Do not generate all scenes as one visual batch.**
+- **Do not perform one full-video asset breakdown before individual scene approval.**
+- Scene generation must be approved before that scene's asset breakdown.
+- Asset breakdown must be approved before that scene's clean assets are generated.
+- Clean assets must be approved before moving to the next scene.
+- ChatGPT generates the scene visual and the clean assets.
+- The user reviews and approves at each required approval gate.
+
+Only after all scenes have completed this loop does the selected Build Mechanism affect implementation.
+
+---
+
+# 4. Build Mechanism A — PER_SCENE
+
+Use `PER_SCENE` when each prepared scene should be implemented and motioned as its own Remotion scene/composition before final integration.
+
+After all required scene preparation is complete:
 
 ```text
-All Scenes Complete
+Implement Scene 1 in Remotion
 ↓
-Integration
+Motion Scene 1
+↓
+Implement Scene 2 in Remotion
+↓
+Motion Scene 2
+↓
+Implement Scene 3 in Remotion
+↓
+Motion Scene 3
+↓
+...
+↓
+Integrate All Scenes
 ↓
 Transitions / Match Motion
 ↓
@@ -140,43 +197,29 @@ Final Render
 
 ## PER_SCENE rules
 
-- The scene-generation step must be approved before asset breakdown.
-- Asset breakdown must be approved before clean asset generation.
-- Clean assets must be approved before implementation proceeds.
-- Do not replace the approval loop with a one-shot automatic pipeline.
-- Do not move to the next scene before the required approvals for the current scene are complete.
+- Each scene can be independently previewed and refined.
+- Final integration happens after the individual scene implementations are ready.
+- Shared transition behavior can be refined during integration.
+- Do not skip the common scene-preparation loop defined above.
 
 ---
 
-# 4. Build Mechanism B — FULL_COMPOSITION
+# 5. Build Mechanism B — FULL_COMPOSITION
 
-Use `FULL_COMPOSITION` when the whole video is better implemented as one continuous master timeline.
+Use `FULL_COMPOSITION` when all prepared scenes should be implemented directly inside one continuous master Remotion timeline.
 
-This is especially useful when:
+The scene preparation is still **one scene at a time**.
 
-- elements repeat across scenes,
-- shared objects carry motion between scenes,
-- transitions depend on continuity,
-- match motion is important,
-- the video is short enough to manage comfortably as one composition.
+After **all scenes** have completed:
 
-After Full Storyboard approval:
+`Generate Scene → Approval → Asset Breakdown → Approval → Generate Clean Assets → Approval`
+
+then:
 
 ```text
-Generate Full Visual Sequence
-(all storyboard scenes as one approved visual batch)
-↓
-Approval
-↓
-Full Asset Breakdown
-↓
-Approval
-↓
-Generate All Clean Assets
-↓
-Approval
-↓
 Build One Master Composition
+↓
+Place All Prepared Scenes on One Timeline
 ↓
 Motion
 ↓
@@ -189,45 +232,87 @@ Final Approval
 Final Render
 ```
 
-The **Full Storyboard** and the **Full Visual Sequence** are different stages:
-
-- Full Storyboard = the approved master design/reference for the complete video.
-- Full Visual Sequence = ChatGPT-generated production visuals for all storyboard scenes, created from that approved storyboard before asset breakdown.
-
-Example master timeline:
+Example:
 
 ```text
-0s ─────────────────────────────── 10s
+MASTER COMPOSITION
+
+0s ───────────────────────────────────── 14s
 
 Scene 1
       Scene 2
             Scene 3
                   Scene 4
                         Scene 5
+                              Scene 6
+                                    Scene 7
 ```
-
-The scenes remain useful visual and timing sections, but the final implementation lives in one master Remotion composition.
 
 ## FULL_COMPOSITION rules
 
-- Generate the Full Visual Sequence and obtain approval **before** Full Asset Breakdown.
-- Do not treat the approved storyboard itself as the generated production visual.
-- Do not create separate final Remotion compositions for every scene unless there is a specific debugging need.
-- Identify shared assets and shared visual objects during the full asset breakdown.
-- Prefer real object continuity and match motion over fake continuity created only with fades.
-- Build the video as one timeline from the start of implementation.
+- There is **no "Generate Full Visual Sequence" production step**.
+- There is **no "Full Asset Breakdown" step replacing individual scene breakdowns**.
+- Generate, approve, break down, and clean each scene individually first.
+- After every scene is ready, implement them together in one master composition.
+- Prefer shared-object continuity and match motion when appropriate.
+- Do not create separate final compositions for every scene unless needed for debugging.
 
 ---
 
-# 5. ChatGPT responsibilities
+# 6. What the two mechanisms actually change
+
+The front half of production is the same:
+
+```text
+Full Storyboard
+↓
+Approval
+↓
+Scene 1: Generate → Approve → Breakdown → Approve → Clean → Approve
+↓
+Scene 2: Generate → Approve → Breakdown → Approve → Clean → Approve
+↓
+Scene 3: Generate → Approve → Breakdown → Approve → Clean → Approve
+↓
+...
+↓
+All Scenes Ready
+```
+
+Then they diverge:
+
+### PER_SCENE
+
+```text
+Build / Motion each scene separately
+↓
+Integrate
+↓
+Transitions
+```
+
+### FULL_COMPOSITION
+
+```text
+Build all prepared scenes directly in one master composition
+↓
+Motion on one timeline
+↓
+Match Motion / Transitions
+```
+
+This distinction must remain clear.
+
+---
+
+# 7. ChatGPT responsibilities
 
 ChatGPT is responsible for the production work unless the user explicitly chooses otherwise.
 
 This includes:
 
-- generating each Scene visual in `PER_SCENE`,
-- generating the complete Full Visual Sequence in `FULL_COMPOSITION`,
-- performing asset breakdown only after the relevant generated visual has been approved,
+- generating the visual for the current scene,
+- performing asset breakdown for the current approved scene,
 - identifying shared versus scene-specific assets,
 - generating clean visual assets,
 - preparing image assets for use in Remotion,
@@ -243,7 +328,7 @@ Do not ask the user to manually create an asset that ChatGPT can generate.
 
 ---
 
-# 6. Asset rules
+# 8. Asset rules
 
 ## Keep these native and editable whenever possible
 
@@ -280,9 +365,9 @@ The final Remotion implementation must preserve editability wherever reasonably 
 
 ---
 
-# 7. Motion rules
+# 9. Motion rules
 
-Motion begins only after the relevant visual implementation and assets are approved.
+Motion begins only after the required visual and clean-asset approvals for the relevant scene(s).
 
 Motion may include:
 
@@ -298,7 +383,7 @@ Motion may include:
 - shared-object transitions,
 - match motion.
 
-For continuous videos, prefer:
+For continuous motion, prefer:
 
 ```text
 shared object
@@ -322,7 +407,7 @@ when genuine continuity is possible.
 
 ---
 
-# 8. Polish
+# 10. Polish
 
 Polish happens after the core motion works.
 
@@ -343,72 +428,54 @@ Do not use the polish stage to silently redesign an already approved concept.
 
 ---
 
-# 9. Summary
+# 11. Canonical summary
 
 ```text
 GLOBAL VIDEO DEVELOPMENT
 
-Every project MUST define:
+1. Brief
+2. Select Video Type
+3. Select Build Mechanism
+4. Full Storyboard
+5. Storyboard Approval
 
-1. VIDEO TYPE
-   - EIM
-   - KEC
+6. PREPARE EVERY SCENE ONE BY ONE
 
-2. BUILD MECHANISM
-   - PER_SCENE
-   - FULL_COMPOSITION
+   Scene 1
+   Generate Scene
+   ↓
+   Approval
+   ↓
+   Asset Breakdown
+   ↓
+   Approval
+   ↓
+   Generate Clean Assets
+   ↓
+   Approval
 
+   THEN Scene 2
+   SAME LOOP
 
-MANDATORY GLOBAL PIPELINE
+   THEN Scene 3
+   SAME LOOP
 
-Brief
-↓
-Select Type
-↓
-Select Build Mechanism
-↓
-Full Storyboard
-↓
-Approval
-↓
-Production
-↓
-Motion
-↓
-Polish
-↓
-Final Approval
-↓
-Render
+   Repeat until all scenes are prepared.
+
+7. IMPLEMENT USING SELECTED BUILD MECHANISM
 
 
-PER_SCENE PRODUCTION
+PER_SCENE
 
-For EACH scene:
-
-Generate Scene
+Implement / Motion Scene 1
 ↓
-Approval
+Implement / Motion Scene 2
 ↓
-Asset Breakdown
+...
 ↓
-Approval
-↓
-Generate Clean Assets
-↓
-Approval
-↓
-Implementation
-↓
-Motion
-
-Repeat until all scenes are complete.
-
-Then:
-
 Integration
 ↓
-Transitions
+Transitions / Match Motion
 ↓
 Polish
 ↓
@@ -417,21 +484,11 @@ Final Approval
 Render
 
 
-FULL_COMPOSITION PRODUCTION
+FULL_COMPOSITION
 
-Generate Full Visual Sequence
-↓
-Approval
-↓
-Full Asset Breakdown
-↓
-Approval
-↓
-Generate All Clean Assets
-↓
-Approval
-↓
 Build One Master Composition
+↓
+Place All Prepared Scenes on One Timeline
 ↓
 Motion
 ↓
