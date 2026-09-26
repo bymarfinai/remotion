@@ -48,9 +48,9 @@ From `packages/example`:
 
 For work in the Marfin video project, the mandatory production workflow is defined in:
 
-`docs/VIDEO-DEVELOPMENT-WORKFLOW.md`
+`docs/MANDATORY-READ-VIDEO-WORKFLOW.md`
 
-Read that file before creating or modifying a Marfin video.
+MANDATORY: Read that file in full before creating, modifying, generating assets for, or implementing any Marfin video. Do not begin video work before reading it.
 
 ### Required project definition
 
@@ -122,4 +122,4 @@ Use raster assets only for genuinely image-based elements such as photos, cutout
 
 Never flatten an entire storyboard or scene into a single raster image just to animate it.
 
-Follow the complete workflow and both build mechanisms in `docs/VIDEO-DEVELOPMENT-WORKFLOW.md`.
+Follow the complete workflow and both build mechanisms in `docs/MANDATORY-READ-VIDEO-WORKFLOW.md`.
