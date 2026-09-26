@@ -177,13 +177,15 @@ Only after all scenes have completed this loop does the selected Build Mechanism
 
 ## Mandatory SAVE checkpoint
 
-After a scene's clean assets are approved, save them to the repository before moving to the next scene.
+After a scene's clean assets are approved, persist them before moving to the next scene.
 
-Default path:
+Preferred binary path when direct GitHub binary upload is available:
 
 ```text
 packages/marfin-video/public/generated/<project-slug>/scene-XX/
 ```
+
+If the active GitHub connector cannot directly commit binary image files, persist the high-resolution PNG masters in ChatGPT Library and record the exact Library path and Library file ID for every asset in the repository `assets-manifest.md`. Temporary `/mnt/data` files do not count as SAVE.
 
 Example:
 
@@ -205,7 +207,7 @@ SAVE rules:
 - Do not downscale or recompress the approved master just to reduce file size.
 - WebP or other optimized derivatives may be created later, but the PNG master remains the source of truth.
 - Update `assets-manifest.md` every time a scene is saved.
-- The manifest must record the scene number and exact approved filenames.
+- The manifest must record the scene number, exact approved filenames, persistent storage location, and persistent file IDs when Library fallback is used.
 - Do not move to the next scene until SAVE and manifest update are complete.
 
 ---
