@@ -43,3 +43,53 @@ From `packages/example`:
 - `bunx remotion compositions` — list available compositions.
 - `bunx remotion render <comp-id> --output ../../out/video.mp4` — render a video.
 - `bunx remotion still <comp-id> --output ../../out/still.png` — render a still image.
+
+## Marfin video development workflow
+
+For work in the Marfin video project, the mandatory production workflow is defined in:
+
+`docs/VIDEO-DEVELOPMENT-WORKFLOW.md`
+
+Read that file before creating or modifying a Marfin video.
+
+### Required project definition
+
+Every video project must define both:
+
+1. **Video Type**
+   - `EIM` — Editorial Infographic Motion
+   - `KEC` — Kinetic Editorial Collage
+
+2. **Build Mechanism**
+   - `PER_SCENE`
+   - `FULL_COMPOSITION`
+
+Video Type defines the visual language. Build Mechanism defines how the approved storyboard is implemented. They are separate decisions.
+
+### Mandatory approval rule
+
+Do not skip approval gates.
+
+If a stage requires user approval:
+
+`NOT APPROVED = DO NOT CONTINUE`
+
+### Asset-generation responsibility
+
+ChatGPT is responsible for generating the visual assets required by the approved storyboard and for preparing them for Remotion implementation.
+
+Do not ask the user to manually create assets that ChatGPT can generate.
+
+Keep editable elements native wherever possible:
+
+- Text → React / HTML
+- Shapes → React / CSS / SVG
+- Lines and paths → SVG
+- Numbers → native text
+- Simple backgrounds and geometric elements → native shapes
+
+Use raster assets only for genuinely image-based elements such as photos, cutouts, people, buildings, clouds, textures, or similar artwork.
+
+Never flatten an entire storyboard or scene into a single raster image just to animate it.
+
+Follow the complete workflow and both build mechanisms in `docs/VIDEO-DEVELOPMENT-WORKFLOW.md`.
