@@ -74,6 +74,17 @@ If a stage requires user approval:
 
 `NOT APPROVED = DO NOT CONTINUE`
 
+### Mandatory visual-generation rule
+
+The approved Full Storyboard is the master reference, but it is **not** a substitute for the generated production visual.
+
+Before any asset breakdown:
+
+- `PER_SCENE`: Generate the current Scene → Approval → Asset Breakdown.
+- `FULL_COMPOSITION`: Generate the **Full Visual Sequence** for all storyboard scenes → Approval → Full Asset Breakdown.
+
+Never jump directly from Full Storyboard Approval to Asset Breakdown in either build mechanism.
+
 ### Asset-generation responsibility
 
 ChatGPT is responsible for generating the visual assets required by the approved storyboard and for preparing them for Remotion implementation.
