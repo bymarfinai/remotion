@@ -110,11 +110,13 @@ The difference between `PER_SCENE` and `FULL_COMPOSITION` begins at Remotion imp
 
 ### Mandatory SAVE rule
 
-After clean assets are approved, they MUST be saved to the repository before moving to the next scene.
+After clean assets are approved, they MUST be persisted before moving to the next scene.
 
-Default location:
+Preferred binary location when the active GitHub path supports binary upload:
 
 `packages/marfin-video/public/generated/<project-slug>/scene-XX/`
+
+If direct binary commit is not supported by the active GitHub connector, save the high-resolution masters to persistent ChatGPT Library storage and record their exact Library paths and Library file IDs in the repository manifest. Never rely on temporary `/mnt/data` storage as the only saved copy.
 
 Use high-resolution PNG as the master format for approved raster assets, preserving transparency where applicable. Optimized derivatives such as WebP may be created later, but they do not replace the PNG master.
 
@@ -122,7 +124,7 @@ Each project must maintain:
 
 `packages/marfin-video/public/generated/<project-slug>/assets-manifest.md`
 
-The manifest must list the approved saved assets for every scene. Do not move to the next scene until SAVE is complete.
+The manifest must list the approved saved assets for every scene and where the persistent master is stored. Do not move to the next scene until SAVE and manifest update are complete.
 
 ### Asset-generation responsibility
 
