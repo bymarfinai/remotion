@@ -1,25 +1,16 @@
-# EIM Core Docs
+# EIM Docs
 
-Isi paket dokumentasi standard EIM:
+Status: **REFERENCE ONLY — not the final production workflow.**
 
-- `eim-standard.md` — standard bible EIM
-- `eim-scene-spec-template.md` — template wajib sebelum build scene
-- `eim-acceptance-checklist.md` — checklist QC sebelum approve
+The files in this folder capture useful visual and technical notes from EIM experimentation, but they are intentionally **not enforced as the production process** right now.
 
-## Cara pakai
+Current files:
+- `eim-standard.md`
+- `eim-scene-spec-template.md`
+- `eim-acceptance-checklist.md`
 
-1. Lock standard di `eim-standard.md`
-2. Isi template scene baru pakai `eim-scene-spec-template.md`
-3. Generate/bangun scene pack berdasarkan spec tersebut
-4. QC dengan `eim-acceptance-checklist.md`
-5. Hanya lakukan minor tuning setelah install
+## Important
 
-## Source of truth
+Do not use these documents as a mandatory multi-step pipeline until the simplified production workflow is locked.
 
-Untuk scene EIM baru, gunakan urutan prioritas:
-
-1. Approved scene pack terbaru
-2. Scene spec scene terkait
-3. EIM Standard Bible
-4. Shared motion / style presets
-5. Improvisasi minimal
+The final production sequence will be kept short and practical, then this folder can be simplified around that flow.
