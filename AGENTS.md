@@ -74,16 +74,35 @@ If a stage requires user approval:
 
 `NOT APPROVED = DO NOT CONTINUE`
 
-### Mandatory visual-generation rule
+### Mandatory scene-preparation rule
 
-The approved Full Storyboard is the master reference, but it is **not** a substitute for the generated production visual.
+The approved Full Storyboard is the master reference for the entire video.
 
-Before any asset breakdown:
+**Both build mechanisms prepare scenes one by one.** The build mechanism does not change this preparation loop.
 
-- `PER_SCENE`: Generate the current Scene → Approval → Asset Breakdown.
-- `FULL_COMPOSITION`: Generate the **Full Visual Sequence** for all storyboard scenes → Approval → Full Asset Breakdown.
+For every scene, in storyboard order:
 
-Never jump directly from Full Storyboard Approval to Asset Breakdown in either build mechanism.
+```text
+Generate Scene
+↓
+Approval
+↓
+Asset Breakdown
+↓
+Approval
+↓
+Generate Clean Assets
+↓
+Approval
+↓
+Move to the next Scene
+```
+
+Repeat until every storyboard scene is complete.
+
+Never generate all scenes as one visual batch. Never perform a full-video asset breakdown before the individual scenes have passed their required approval gates.
+
+The difference between `PER_SCENE` and `FULL_COMPOSITION` begins at Remotion implementation/assembly, after the required scene preparation is complete.
 
 ### Asset-generation responsibility
 
