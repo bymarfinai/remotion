@@ -163,6 +163,11 @@ This is especially useful when:
 After Full Storyboard approval:
 
 ```text
+Generate Full Visual Sequence
+(all storyboard scenes as one approved visual batch)
+↓
+Approval
+↓
 Full Asset Breakdown
 ↓
 Approval
@@ -184,6 +189,11 @@ Final Approval
 Final Render
 ```
 
+The **Full Storyboard** and the **Full Visual Sequence** are different stages:
+
+- Full Storyboard = the approved master design/reference for the complete video.
+- Full Visual Sequence = ChatGPT-generated production visuals for all storyboard scenes, created from that approved storyboard before asset breakdown.
+
 Example master timeline:
 
 ```text
@@ -200,6 +210,8 @@ The scenes remain useful visual and timing sections, but the final implementatio
 
 ## FULL_COMPOSITION rules
 
+- Generate the Full Visual Sequence and obtain approval **before** Full Asset Breakdown.
+- Do not treat the approved storyboard itself as the generated production visual.
 - Do not create separate final Remotion compositions for every scene unless there is a specific debugging need.
 - Identify shared assets and shared visual objects during the full asset breakdown.
 - Prefer real object continuity and match motion over fake continuity created only with fades.
@@ -213,8 +225,9 @@ ChatGPT is responsible for the production work unless the user explicitly choose
 
 This includes:
 
-- generating scene visuals or references when required,
-- performing asset breakdown,
+- generating each Scene visual in `PER_SCENE`,
+- generating the complete Full Visual Sequence in `FULL_COMPOSITION`,
+- performing asset breakdown only after the relevant generated visual has been approved,
 - identifying shared versus scene-specific assets,
 - generating clean visual assets,
 - preparing image assets for use in Remotion,
@@ -406,6 +419,10 @@ Render
 
 FULL_COMPOSITION PRODUCTION
 
+Generate Full Visual Sequence
+↓
+Approval
+↓
 Full Asset Breakdown
 ↓
 Approval
