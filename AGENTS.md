@@ -95,6 +95,10 @@ Generate Clean Assets
 ↓
 Approval
 ↓
+SAVE Approved Assets to Repo
+↓
+Update Asset Manifest
+↓
 Move to the next Scene
 ```
 
@@ -103,6 +107,22 @@ Repeat until every storyboard scene is complete.
 Never generate all scenes as one visual batch. Never perform a full-video asset breakdown before the individual scenes have passed their required approval gates.
 
 The difference between `PER_SCENE` and `FULL_COMPOSITION` begins at Remotion implementation/assembly, after the required scene preparation is complete.
+
+### Mandatory SAVE rule
+
+After clean assets are approved, they MUST be saved to the repository before moving to the next scene.
+
+Default location:
+
+`packages/marfin-video/public/generated/<project-slug>/scene-XX/`
+
+Use high-resolution PNG as the master format for approved raster assets, preserving transparency where applicable. Optimized derivatives such as WebP may be created later, but they do not replace the PNG master.
+
+Each project must maintain:
+
+`packages/marfin-video/public/generated/<project-slug>/assets-manifest.md`
+
+The manifest must list the approved saved assets for every scene. Do not move to the next scene until SAVE is complete.
 
 ### Asset-generation responsibility
 
