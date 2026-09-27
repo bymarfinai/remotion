@@ -33,6 +33,26 @@ Notes:
 - Skyline master includes the treeline.
 - Monas remains a separate asset for independent motion and continuity.
 
-## Scene 02
+## Scene 02 — SAVED / APPROVED
+
+Persistent master storage:
+`/Marfin Video Assets/monas-eim-full-composition/scene-02/`
+
+Approved files:
+
+- `monas-hero.png`
+  - Library file ID: `libfile_16b9f04183648191b41ad022497d0abe`
+- `blue-sky-circle.png`
+  - Library file ID: `libfile_cd83a3a681a48191a22efe77e02cde5c`
+- `bottom-cloud-bank.png`
+  - Library file ID: `libfile_ef97ece4fb288191a77514da119e4e96`
+
+Notes:
+- Scene 2 uses its own generated Monas asset; do not reuse/crop Scene 1 Monas.
+- Small header/counter text such as `JAKARTA / INDONESIA` and `02 / 07` remains native/editable and is not rasterized.
+- Main typography remains native/editable.
+- The blue sky circle and bottom cloud bank are separate raster layers for independent positioning/motion.
+
+## Scene 03
 
 Status: NOT STARTED
