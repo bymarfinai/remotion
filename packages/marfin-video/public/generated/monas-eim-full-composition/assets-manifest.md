@@ -70,6 +70,17 @@ Notes:
 - `JAKARTA / INDONESIA` and `03 / 07` are omitted.
 - Background remains full cream and native.
 
+## Handoff Status — Scene 01–03 Prototype
+
+- Package: `monas-eim-fullcomp-scene1-3-handoff.zip`
+- Local install target: `D:\\Remotion\\remotion\\packages\\marfin-video`
+- User confirmed installer result: `INSTALL COMPLETE`
+- Assets installed to: `public\\generated\\monas-eim-full-composition`
+- Config installed to: `src\\generated\\monas-eim-full-composition\\project-config.ts`
+- Planned composition ID: `Monas-EIM-FullComp-Test-3Scenes`
+- Handoff gate: **PASSED**
+- Remotion implementation may begin for the explicitly requested Scene 01–03 FULL_COMPOSITION prototype.
+
 ## Scene 04
 
 Status: NOT STARTED
