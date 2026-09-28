@@ -53,6 +53,23 @@ Notes:
 - Main typography remains native/editable.
 - The blue sky circle and bottom cloud bank are separate raster layers for independent positioning/motion.
 
-## Scene 03
+## Scene 03 — SAVED / APPROVED
+
+Persistent master storage:
+`/Marfin Video Assets/monas-eim-full-composition/scene-03/`
+
+Approved files:
+
+- `blue-arc-three-nodes.png`
+  - Library file ID: `libfile_fff9c63e3d2481919b61a14fb9acf708`
+
+Notes:
+- Scene 3 uses a generated raster arc + three-node graphic rather than SVG/CSS for the curve.
+- `It brings together`, `PLACE`, `PEOPLE`, `PURPOSE`, and the right-side labels remain native/editable text.
+- Right-side labels retained: `PLACE / A CAPITAL CITY`, `PEOPLE / A SHARED STORY`, `PURPOSE / A BRIGHTER TOMORROW`.
+- `JAKARTA / INDONESIA` and `03 / 07` are omitted.
+- Background remains full cream and native.
+
+## Scene 04
 
 Status: NOT STARTED
