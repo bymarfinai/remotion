@@ -179,13 +179,28 @@ Only after all scenes have completed this loop does the selected Build Mechanism
 
 After a scene's clean assets are approved, persist them before moving to the next scene.
 
-Preferred binary path when direct GitHub binary upload is available:
+### Preferred persistent binary storage
+
+When Google Drive is connected and writable, use this as the preferred source of truth for approved binary assets:
 
 ```text
-packages/marfin-video/public/generated/<project-slug>/scene-XX/
+Google Drive/
+└── Marfin Video Assets/
+    └── <project-slug>/
+        └── scene-XX/
 ```
 
-If the active GitHub connector cannot directly commit binary image files, persist the high-resolution PNG masters in ChatGPT Library and record the exact Library path and Library file ID for every asset in the repository `assets-manifest.md`. Temporary `/mnt/data` files do not count as SAVE.
+GitHub remains the source of truth for Remotion code, configuration, workflow documentation, and asset references.
+
+If Drive binary upload is not available in the active connector/runtime, use this fallback order:
+
+1. repository binary path when direct binary commit is supported:
+   `packages/marfin-video/public/generated/<project-slug>/scene-XX/`
+2. persistent ChatGPT Library storage with exact Library path and Library file ID recorded in `assets-manifest.md`.
+
+Temporary `/mnt/data` files do not count as SAVE.
+
+Do not delete a verified fallback master until the Drive copy has been verified.
 
 Example:
 
@@ -212,15 +227,39 @@ SAVE rules:
 
 ---
 
-# 4. Mandatory Package / ZIP / Handoff Checkpoint
+# 4. Mandatory Implementation Handoff Checkpoint
 
 This checkpoint is mandatory **after all scenes required for the current implementation pass are prepared and saved, and before any Remotion implementation begins**.
+
+The handoff method depends on the implementation environment.
+
+### Direct-sync environment
+
+If the target VPS/workstation can sync the approved Google Drive project folder directly, use:
+
+```text
+All Required Scenes Prepared
+↓
+Verify SAVE + Asset Manifest
+↓
+Sync Google Drive project folder to implementation workspace
+↓
+Verify synced assets
+↓
+User confirms implementation environment is ready
+↓
+ONLY THEN begin Remotion Implementation
+```
+
+### Manual/local environment
+
+If the target environment cannot sync Drive directly, use the ZIP handoff flow below.
 
 For a full project, this normally means all storyboard scenes are ready.
 
 For an explicitly approved prototype/test pass, this may be a subset of scenes (for example Scene 1–3), but the subset must still complete the full scene-preparation loop first.
 
-## Required sequence
+## Required manual ZIP sequence
 
 ```text
 All Required Scenes Prepared
@@ -239,6 +278,8 @@ User Confirms Package Is Available Locally
 ↓
 ONLY THEN begin Remotion Implementation
 ```
+
+ZIP is a fallback handoff mechanism, not a mandatory transfer format when direct Drive sync is available.
 
 ## 4.1 Pre-package verification
 
@@ -397,9 +438,11 @@ Do not use old scene plates, legacy visuals, or unrelated repo assets as silent 
 ## Hard handoff rule
 
 ```text
-NO ZIP / HANDOFF CONFIRMATION
+NO VERIFIED ASSET HANDOFF / SYNC CONFIRMATION
 = NO REMOTION IMPLEMENTATION
 ```
+
+A verified Drive sync satisfies this gate. If direct sync is unavailable, the ZIP handoff must be completed instead.
 
 This checkpoint exists specifically to prevent implementation from starting before the approved source assets have been transferred into the user's local working environment.
 
@@ -707,19 +750,25 @@ GLOBAL VIDEO DEVELOPMENT
 
    Repeat until all scenes are prepared.
 
-7. PACKAGE / ZIP / HANDOFF
+7. IMPLEMENTATION HANDOFF
 
    Verify all required scenes are SAVED
    ↓
-   Build Handoff Package
-   ↓
-   Create ZIP
-   ↓
-   Give ZIP to User
-   ↓
-   User Extracts / Installs Locally
-   ↓
-   User Confirms Local Package Is Ready
+   IF Drive sync is available:
+      Sync approved Google Drive project folder
+      ↓
+      Verify assets in target workspace
+      ↓
+      User confirms environment is ready
+
+   ELSE:
+      Build ZIP handoff
+      ↓
+      Give ZIP to User
+      ↓
+      User Extracts / Installs Locally
+      ↓
+      User confirms environment is ready
 
 8. IMPLEMENT USING SELECTED BUILD MECHANISM
 
