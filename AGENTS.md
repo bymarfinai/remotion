@@ -145,3 +145,10 @@ Use raster assets only for genuinely image-based elements such as photos, cutout
 Never flatten an entire storyboard or scene into a single raster image just to animate it.
 
 Follow the complete workflow and both build mechanisms in `docs/MANDATORY-READ-VIDEO-WORKFLOW.md`.
+
+
+## Mandatory handoff gate
+
+For Marfin video work, do not begin Remotion implementation until the required scene set has been prepared, saved, packaged into a ZIP, explicitly handed to the user, and the user has confirmed the package is extracted/installed locally.
+
+See `docs/MANDATORY-READ-VIDEO-WORKFLOW.md` for the exact required sequence.
