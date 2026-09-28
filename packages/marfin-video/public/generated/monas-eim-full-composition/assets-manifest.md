@@ -10,6 +10,33 @@
 - Master raster format: PNG
 - Approved asset masters are persisted before moving to the next scene.
 
+## Google Drive Asset Storage
+
+Primary Drive folder:
+- Root: `Marfin Video Assets`
+  - Folder ID: `1EB-mg1aRn_5w_uFODnhdQSygwIOQEAKR`
+- Project: `monas-eim-full-composition`
+  - Folder ID: `1WvSppeISCEgjaelIL2wI6d0wB7JyPJMm`
+- Scene 01 folder ID: `1EQN5Ise3l2j434jEzqpHf2M2yLy3bGpy`
+- Scene 02 folder ID: `1SDSTmeE3qvAwYSH5XF6nscQmjobCi_In`
+- Scene 03 folder ID: `1jDYtWg5bI3OyBu3dJwgNJTD67H49tSAH`
+- Drive-native manifest Doc ID: `1TfaiwlUtnC2rw3vGSKytz_aC8NbbA0opwDoLffHD5PU`
+
+Storage policy:
+- Google Drive is the preferred persistent storage for approved binary assets.
+- GitHub is the source of truth for Remotion code, config, workflow docs, and asset references.
+- ChatGPT Library remains the verified fallback until each Drive PNG copy is uploaded and checked.
+- Do not delete Library masters before Drive verification.
+- For VPS/workstation implementation, prefer direct Drive sync; use ZIP only when direct sync is unavailable.
+
+Current binary migration status:
+- Drive folder hierarchy: **CREATED**
+- Drive-native asset manifest: **CREATED**
+- Standalone approved PNG upload to Drive: **PENDING**
+- Reason: the current connector cannot directly egress the existing Library-backed image files into Drive.
+- Existing Library masters remain the current verified binary source of truth until migration completes.
+
+
 ## Scene 01 — SAVED / APPROVED
 
 Persistent master storage:
