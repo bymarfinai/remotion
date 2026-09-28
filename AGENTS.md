@@ -112,11 +112,11 @@ The difference between `PER_SCENE` and `FULL_COMPOSITION` begins at Remotion imp
 
 After clean assets are approved, they MUST be persisted before moving to the next scene.
 
-Preferred binary location when the active GitHub path supports binary upload:
+Preferred persistent binary storage is Google Drive when the connected Drive is writable:
 
-`packages/marfin-video/public/generated/<project-slug>/scene-XX/`
+`Marfin Video Assets/<project-slug>/scene-XX/`
 
-If direct binary commit is not supported by the active GitHub connector, save the high-resolution masters to persistent ChatGPT Library storage and record their exact Library paths and Library file IDs in the repository manifest. Never rely on temporary `/mnt/data` storage as the only saved copy.
+GitHub remains the source of truth for code/config/docs. If Drive binary upload is unavailable, use repository binary storage when supported, otherwise use persistent ChatGPT Library storage and record exact Library paths/file IDs in the manifest. Never rely on temporary `/mnt/data` storage as the only saved copy.
 
 Use high-resolution PNG as the master format for approved raster assets, preserving transparency where applicable. Optimized derivatives such as WebP may be created later, but they do not replace the PNG master.
 
@@ -149,6 +149,10 @@ Follow the complete workflow and both build mechanisms in `docs/MANDATORY-READ-V
 
 ## Mandatory handoff gate
 
-For Marfin video work, do not begin Remotion implementation until the required scene set has been prepared, saved, packaged into a ZIP, explicitly handed to the user, and the user has confirmed the package is extracted/installed locally.
+For Marfin video work, do not begin Remotion implementation until the required scene set has been prepared, saved, and verified in the target implementation environment.
+
+Preferred path: sync the approved Google Drive project folder directly to the VPS/workstation and verify the synced assets.
+
+Fallback path: create a ZIP, explicitly hand it to the user, and wait for local extraction/install confirmation.
 
 See `docs/MANDATORY-READ-VIDEO-WORKFLOW.md` for the exact required sequence.
