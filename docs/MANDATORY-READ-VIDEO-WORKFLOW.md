@@ -212,11 +212,203 @@ SAVE rules:
 
 ---
 
-# 4. Build Mechanism A — PER_SCENE
+# 4. Mandatory Package / ZIP / Handoff Checkpoint
+
+This checkpoint is mandatory **after all scenes required for the current implementation pass are prepared and saved, and before any Remotion implementation begins**.
+
+For a full project, this normally means all storyboard scenes are ready.
+
+For an explicitly approved prototype/test pass, this may be a subset of scenes (for example Scene 1–3), but the subset must still complete the full scene-preparation loop first.
+
+## Required sequence
+
+```text
+All Required Scenes Prepared
+↓
+Verify SAVE + Asset Manifest
+↓
+Build Handoff Package
+↓
+Create ZIP
+↓
+Deliver ZIP to User
+↓
+User Extracts / Installs ZIP into Local Remotion Workspace
+↓
+User Confirms Package Is Available Locally
+↓
+ONLY THEN begin Remotion Implementation
+```
+
+## 4.1 Pre-package verification
+
+Before building the ZIP, verify every included scene has:
+
+- approved scene visual,
+- approved asset breakdown,
+- approved clean assets,
+- persistent SAVE completed,
+- `assets-manifest.md` updated,
+- deterministic filenames,
+- native/editable elements clearly identified,
+- raster/image masters clearly identified,
+- no required asset left only in temporary `/mnt/data`.
+
+If any required scene is incomplete:
+
+```text
+DO NOT BUILD ZIP
+DO NOT IMPLEMENT
+```
+
+## 4.2 ZIP package contents
+
+The handoff ZIP must contain the material needed for local implementation.
+
+Recommended structure:
+
+```text
+<project-slug>-handoff/
+├── README.md
+├── assets-manifest.md
+├── install.ps1
+├── install.sh
+├── assets/
+│   ├── scene-01/
+│   │   └── approved raster assets
+│   ├── scene-02/
+│   └── ...
+└── src/
+    └── generated/
+        └── <project-slug>/
+            ├── project-config.ts
+            ├── storyboard-notes.md
+            └── implementation placeholder / scaffold when needed
+```
+
+The exact structure may vary, but the package must be self-explanatory and installable.
+
+## 4.3 ZIP content rules
+
+- Include only the **approved** assets for the current pass.
+- Preserve high-resolution PNG masters.
+- Preserve transparency where applicable.
+- Do not substitute low-resolution previews for approved masters.
+- Do not flatten editable text or simple shapes into raster unless the approved asset breakdown explicitly requires it.
+- Include a copy of the current `assets-manifest.md`.
+- Include a `README.md` stating:
+  - project slug,
+  - Video Type,
+  - Build Mechanism,
+  - included scenes,
+  - resolution,
+  - FPS,
+  - timing,
+  - destination paths,
+  - install steps,
+  - composition ID planned for implementation.
+- Prefer an installer script so the user does not need to manually copy many files.
+
+## 4.4 Delivery rule
+
+Creating a ZIP is not enough.
+
+The ZIP must be explicitly handed to the user as a downloadable artifact.
+
+Required sequence:
+
+```text
+Create ZIP
+↓
+Provide ZIP download link
+↓
+User downloads/extracts or installs it
+↓
+User confirms local package is ready
+↓
+Proceed
+```
+
+Do not silently create implementation code in the repository and call the handoff complete.
+
+## 4.5 Local install / extraction checkpoint
+
+The user should normally extract/install the ZIP into the local Remotion workspace before implementation begins.
+
+Typical local workspace:
+
+```text
+D:\Remotion\remotion\packages\marfin-video
+```
+
+If the ZIP includes `install.ps1`, the preferred Windows flow is:
+
+```powershell
+cd <extracted-zip-folder>
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+The installer should:
+
+1. verify the target repo/package exists,
+2. back up files that will be modified when appropriate,
+3. copy approved assets into deterministic local paths,
+4. copy or patch source scaffolding if included,
+5. avoid deleting unrelated existing work,
+6. print the composition/package name that is ready to test,
+7. stop with a clear error if a required path or file is missing.
+
+## 4.6 Approval / confirmation gate
+
+Implementation may begin only after the user confirms the package is locally available.
+
+```text
+ZIP DELIVERED ≠ IMPLEMENTATION APPROVED
+
+USER CONFIRMS LOCAL INSTALL / EXTRACTION
+↓
+IMPLEMENTATION MAY BEGIN
+```
+
+## 4.7 Prototype / partial-scene test rule
+
+A prototype such as a 3-scene FULL_COMPOSITION test is allowed before the remaining scenes are prepared **only when the user explicitly requests the prototype**.
+
+Even then, the sequence is:
+
+```text
+Prepare requested subset completely
+↓
+SAVE subset
+↓
+Update manifest
+↓
+Build subset ZIP
+↓
+Deliver ZIP
+↓
+User installs/extracts
+↓
+Build prototype implementation
+```
+
+Do not use old scene plates, legacy visuals, or unrelated repo assets as silent substitutes for the newly approved assets unless the user explicitly approves that substitution.
+
+## Hard handoff rule
+
+```text
+NO ZIP / HANDOFF CONFIRMATION
+= NO REMOTION IMPLEMENTATION
+```
+
+This checkpoint exists specifically to prevent implementation from starting before the approved source assets have been transferred into the user's local working environment.
+
+
+# 5. Build Mechanism A — PER_SCENE
 
 Use `PER_SCENE` when each prepared scene should be implemented and motioned as its own Remotion scene/composition before final integration.
 
-After all required scene preparation is complete:
+After all required scene preparation is complete **and the mandatory ZIP / handoff / local-install checkpoint is complete**:
 
 ```text
 Implement Scene 1 in Remotion
@@ -253,7 +445,7 @@ Final Render
 
 ---
 
-# 5. Build Mechanism B — FULL_COMPOSITION
+# 6. Build Mechanism B — FULL_COMPOSITION
 
 Use `FULL_COMPOSITION` when all prepared scenes should be implemented directly inside one continuous master Remotion timeline.
 
@@ -263,7 +455,7 @@ After **all scenes** have completed:
 
 `Generate Scene → Approval → Asset Breakdown → Approval → Generate Clean Assets → Approval → SAVE → Update Manifest`
 
-then:
+then complete the mandatory ZIP / handoff / local-install checkpoint, and only after user confirmation:
 
 ```text
 Build One Master Composition
@@ -308,7 +500,7 @@ Scene 1
 
 ---
 
-# 6. What the two mechanisms actually change
+# 7. What the two mechanisms actually change
 
 The front half of production is the same:
 
@@ -354,7 +546,7 @@ This distinction must remain clear.
 
 ---
 
-# 7. ChatGPT responsibilities
+# 8. ChatGPT responsibilities
 
 ChatGPT is responsible for the production work unless the user explicitly chooses otherwise.
 
@@ -377,7 +569,7 @@ Do not ask the user to manually create an asset that ChatGPT can generate.
 
 ---
 
-# 8. Asset rules
+# 9. Asset rules
 
 ## Keep these native and editable whenever possible
 
@@ -414,7 +606,7 @@ The final Remotion implementation must preserve editability wherever reasonably 
 
 ---
 
-# 9. Motion rules
+# 10. Motion rules
 
 Motion begins only after the required visual and clean-asset approvals for the relevant scene(s).
 
@@ -456,7 +648,7 @@ when genuine continuity is possible.
 
 ---
 
-# 10. Polish
+# 11. Polish
 
 Polish happens after the core motion works.
 
@@ -477,7 +669,7 @@ Do not use the polish stage to silently redesign an already approved concept.
 
 ---
 
-# 11. Canonical summary
+# 12. Canonical summary
 
 ```text
 GLOBAL VIDEO DEVELOPMENT
@@ -515,7 +707,21 @@ GLOBAL VIDEO DEVELOPMENT
 
    Repeat until all scenes are prepared.
 
-7. IMPLEMENT USING SELECTED BUILD MECHANISM
+7. PACKAGE / ZIP / HANDOFF
+
+   Verify all required scenes are SAVED
+   ↓
+   Build Handoff Package
+   ↓
+   Create ZIP
+   ↓
+   Give ZIP to User
+   ↓
+   User Extracts / Installs Locally
+   ↓
+   User Confirms Local Package Is Ready
+
+8. IMPLEMENT USING SELECTED BUILD MECHANISM
 
 
 PER_SCENE
