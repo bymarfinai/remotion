@@ -3,7 +3,6 @@ import {MarfinTest} from './MarfinTest';
 import {KECStylePreview} from './styles/kinetic-editorial-collage/StylePreview';
 import {MonasKECV3} from './generated/monas-kec-v3/Video';
 import {MonasEIMV12} from './generated/monas-eim-v12/Video';
-import {MonasEIMFullCompTest} from './generated/monas-eim-fullcomp-test/Video';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -42,14 +41,6 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
 
       <Folder name="Tests">
-        <Composition
-          id="Monas-EIM-FullComp-Test-3Scenes"
-          component={MonasEIMFullCompTest}
-          durationInFrames={180}
-          fps={30}
-          width={1080}
-          height={1920}
-        />
         <Composition
           id="MarfinTest"
           component={MarfinTest}
