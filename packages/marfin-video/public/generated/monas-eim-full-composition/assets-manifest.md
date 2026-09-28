@@ -26,10 +26,17 @@ Approved files:
 - `foreground-plaza.png`
   - Library file ID: `libfile_02f93827280c81919f2a987c8452d94f`
 
+Additional approved fidelity assets:
+- `main-typography.png`
+  - Library file ID: `libfile_0ed2f01bbd248191be6d95d71db44f53`
+- `support-copy.png`
+  - Library file ID: `libfile_fcac09f972548191b450e00cd382dc9d`
+
 Notes:
 - Background is full cream and remains native in Remotion.
 - No outer blue border.
-- Text, lines, circle/arc, counters, and simple graphic shapes remain native/editable.
+- Main composition-critical typography is now rasterized as transparent full-canvas artwork to preserve approved scale and placement.
+- Header/footer micro-text may remain native.
 - Skyline master includes the treeline.
 - Monas remains a separate asset for independent motion and continuity.
 
@@ -47,10 +54,16 @@ Approved files:
 - `bottom-cloud-bank.png`
   - Library file ID: `libfile_ef97ece4fb288191a77514da119e4e96`
 
+Additional approved fidelity assets:
+- `main-typography.png`
+  - Library file ID: `libfile_f8172940af7481918cc90801f42b2daf`
+- `people-history-identity-tomorrow.png`
+  - Library file ID: `libfile_367f0be858308191801b10c2a7f779f4`
+
 Notes:
 - Scene 2 uses its own generated Monas asset; do not reuse/crop Scene 1 Monas.
-- Small header/counter text such as `JAKARTA / INDONESIA` and `02 / 07` remains native/editable and is not rasterized.
-- Main typography remains native/editable.
+- Small header/counter text such as `JAKARTA / INDONESIA` and `02 / 07` may remain native/editable.
+- Main composition-critical typography is now rasterized as transparent full-canvas artwork to preserve approved scale and placement.
 - The blue sky circle and bottom cloud bank are separate raster layers for independent positioning/motion.
 
 ## Scene 03 — SAVED / APPROVED
@@ -63,9 +76,15 @@ Approved files:
 - `blue-arc-three-nodes.png`
   - Library file ID: `libfile_fff9c63e3d2481919b61a14fb9acf708`
 
+Additional approved fidelity assets:
+- `main-typography.png`
+  - Library file ID: `libfile_36f7067fa5908191b10e8cd8a46cce39`
+- `right-labels.png`
+  - Library file ID: `libfile_775e85612314819190997516c8ae677a`
+
 Notes:
 - Scene 3 uses a generated raster arc + three-node graphic rather than SVG/CSS for the curve.
-- `It brings together`, `PLACE`, `PEOPLE`, `PURPOSE`, and the right-side labels remain native/editable text.
+- Main composition-critical typography and right-side labels are now transparent raster assets to preserve approved scale and placement.
 - Right-side labels retained: `PLACE / A CAPITAL CITY`, `PEOPLE / A SHARED STORY`, `PURPOSE / A BRIGHTER TOMORROW`.
 - `JAKARTA / INDONESIA` and `03 / 07` are omitted.
 - Background remains full cream and native.
@@ -83,7 +102,7 @@ Notes:
 
 ## Stage 8 — FULL_COMPOSITION Implementation
 
-Status: **IMPLEMENTED / STATIC TIMELINE READY**
+Status: **NOT APPROVED — SUPERSEDED BY FIDELITY ASSET CORRECTION**
 
 Composition ID:
 `Monas-EIM-FullComp-Test-3Scenes`
@@ -107,6 +126,20 @@ Rules applied:
 - Scene 03 omits `JAKARTA / INDONESIA` and `03 / 07` per approval.
 - This checkpoint contains **layout + one master timeline only**.
 - Core motion and transitions are **NOT started yet** and belong to the next stage.
+
+## Fidelity Correction Pass — Typography
+
+Status: **APPROVED / SAVED**
+
+Reason:
+- Native React typography did not preserve the exact visual mass, scale, line breaks, and placement of the individually approved generated scenes.
+- Composition-critical text is therefore packaged as transparent full-canvas raster artwork.
+- This is a fidelity-first hybrid implementation; image/photo layers remain separate, while critical typography groups are rasterized.
+
+Next required checkpoint:
+- Build refreshed Scene 01–03 ZIP handoff containing the updated approved typography assets.
+- User installs refreshed handoff.
+- Rebuild Stage 8 using the updated assets.
 
 ## Scene 04
 
