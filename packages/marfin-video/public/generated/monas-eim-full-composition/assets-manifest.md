@@ -81,6 +81,33 @@ Notes:
 - Handoff gate: **PASSED**
 - Remotion implementation may begin for the explicitly requested Scene 01–03 FULL_COMPOSITION prototype.
 
+## Stage 8 — FULL_COMPOSITION Implementation
+
+Status: **IMPLEMENTED / STATIC TIMELINE READY**
+
+Composition ID:
+`Monas-EIM-FullComp-Test-3Scenes`
+
+Implementation:
+`packages/marfin-video/src/generated/monas-eim-full-composition/Video.tsx`
+
+Timeline:
+
+- Scene 01: frames 0–59
+- Scene 02: frames 60–119
+- Scene 03: frames 120–179
+- Total: 180 frames / 6 seconds / 30 fps / 1080×1920
+
+Rules applied:
+
+- Uses only the approved Scene 01–03 assets installed by the handoff package.
+- Does not use legacy EIM scene plates.
+- Main typography remains native/editable.
+- Scene 03 uses the approved raster `blue-arc-three-nodes.png`.
+- Scene 03 omits `JAKARTA / INDONESIA` and `03 / 07` per approval.
+- This checkpoint contains **layout + one master timeline only**.
+- Core motion and transitions are **NOT started yet** and belong to the next stage.
+
 ## Scene 04
 
 Status: NOT STARTED
